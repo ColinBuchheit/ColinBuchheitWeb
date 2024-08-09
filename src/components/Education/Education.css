@@ -1,0 +1,11 @@
+.education {
+  padding: 20px;
+}
+
+.education h1 {
+  color: var(--primary-color);
+}
+
+.education ul {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,10 @@
+.carousel-container {
+  margin: 20px auto;
+  max-width: 80%;
+  overflow: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+}
