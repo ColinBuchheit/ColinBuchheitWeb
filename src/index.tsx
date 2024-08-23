@@ -1,14 +1,13 @@
-// index.tsx
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store'; // Import the store configured in store/index.ts
 import App from './App';
-import './index.css';
 
-const container = document.getElementById('root');
-
-if (container) {
-  const root = createRoot(container);
-  root.render(<App />);
-} else {
-  console.error('Root container not found');
-}
+// Render the app with the Redux Provider
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
