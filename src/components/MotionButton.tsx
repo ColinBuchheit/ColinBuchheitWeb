@@ -7,9 +7,10 @@ interface MotionButtonProps {
   to: string;
   children: React.ReactNode;
   color?: 'primary' | 'secondary';
+  sx?: object; // Add this line to accept sx prop
 }
 
-const MotionButton: React.FC<MotionButtonProps> = ({ to, children, color = 'primary' }) => {
+const MotionButton: React.FC<MotionButtonProps> = ({ to, children, color = 'primary', sx }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
@@ -21,13 +22,7 @@ const MotionButton: React.FC<MotionButtonProps> = ({ to, children, color = 'prim
         color={color}
         component={Link}
         to={to}
-        sx={{
-          padding: '0.5rem 1.5rem',
-          fontSize: '0.875rem',
-          borderRadius: '20px',  // Rounded corners
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',  // Soft shadow
-          textTransform: 'uppercase',
-        }}
+        sx={{ padding: '0.75rem 2rem', fontSize: '1rem', borderRadius: '20px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)', textTransform: 'uppercase', ...sx }} // Spread the sx prop here
       >
         {children}
       </Button>
