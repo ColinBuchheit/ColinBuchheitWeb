@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 const ExperiencePage: React.FC = () => {
   return (
     <Container maxWidth="lg" sx={{ marginTop: '8rem', paddingBottom: '4rem' }}>
+      <Typography variant="h3" color="primary" gutterBottom>
+        Experience
+      </Typography>
+
       {/* MX Holdings Internship */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

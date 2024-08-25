@@ -1,7 +1,8 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import { animateScroll as scroll } from 'react-scroll';
+import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -10,30 +11,87 @@ const Header: React.FC = () => {
     if (location.pathname !== path) {
       window.location.href = path;
     } else {
-      scroll.scrollTo(document.getElementById(sectionId)?.offsetTop || 0, {
-        duration: 500,
-        smooth: true,
-        offset: -70,
-      });
+      const element = document.getElementById(sectionId);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 70,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
   return (
-    <AppBar position="fixed" sx={{ boxShadow: 'none', backgroundColor: 'var(--background-color)', zIndex: 1300 }}>
+    <AppBar position="fixed" sx={{ boxShadow: 'none', backgroundColor: '#000000', zIndex: 1300 }}>
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Button onClick={() => handleNavClick("/", "home")} sx={{ fontWeight: 'bold', color: 'var(--primary-color)', marginRight: '1.5rem', fontSize: '1.25rem', '&:hover': { color: 'var(--secondary-color)' }}}>
-            HOME
-          </Button>
-          <Button onClick={() => handleNavClick("/skills-education", "skillsEducation")} sx={{ fontWeight: 'bold', color: 'var(--primary-color)', marginRight: '1.5rem', fontSize: '1.25rem', '&:hover': { color: 'var(--secondary-color)' }}}>
-            SKILLS & EDUCATION
-          </Button>
-          <Button onClick={() => handleNavClick("/experience", "experience")} sx={{ fontWeight: 'bold', color: 'var(--primary-color)', marginRight: '1.5rem', fontSize: '1.25rem', '&:hover': { color: 'var(--secondary-color)' }}}>
-            EXPERIENCE
-          </Button>
-          <Button onClick={() => handleNavClick("/contact", "contact")} sx={{ fontWeight: 'bold', color: 'var(--primary-color)', fontSize: '1.25rem', '&:hover': { color: 'var(--secondary-color)' }}}>
-            CONTACT
-          </Button>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link to="home" smooth={true} duration={500}>
+              <Box
+                onClick={() => handleNavClick("/", "home")}
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#007bff',
+                  marginRight: '1.5rem',
+                  fontSize: '1.75rem',
+                  cursor: 'pointer',
+                  '&:hover': { color: '#0056b3' }
+                }}
+              >
+                HOME
+              </Box>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link to="skillsEducation" smooth={true} duration={500}>
+              <Box
+                onClick={() => handleNavClick("/skills-education", "skillsEducation")}
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#007bff',
+                  marginRight: '1.5rem',
+                  fontSize: '1.75rem',
+                  cursor: 'pointer',
+                  '&:hover': { color: '#0056b3' }
+                }}
+              >
+                SKILLS & EDUCATION
+              </Box>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link to="experience" smooth={true} duration={500}>
+              <Box
+                onClick={() => handleNavClick("/experience", "experience")}
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#007bff',
+                  marginRight: '1.5rem',
+                  fontSize: '1.75rem',
+                  cursor: 'pointer',
+                  '&:hover': { color: '#0056b3' }
+                }}
+              >
+                EXPERIENCE
+              </Box>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link to="contact" smooth={true} duration={500}>
+              <Box
+                onClick={() => handleNavClick("/contact", "contact")}
+                sx={{
+                  fontWeight: 'bold',
+                  color: '#007bff',
+                  fontSize: '1.75rem',
+                  cursor: 'pointer',
+                  '&:hover': { color: '#0056b3' }
+                }}
+              >
+                CONTACT
+              </Box>
+            </Link>
+          </motion.div>
         </Box>
       </Toolbar>
     </AppBar>
