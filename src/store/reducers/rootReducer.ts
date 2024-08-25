@@ -1,19 +1,11 @@
-import { combineReducers } from 'redux';
+// src/store/reducers/rootReducer.ts
+import { combineReducers } from '@reduxjs/toolkit';
+import reCaptchaReducer from '../reCaptchaSlice';
 
-// Example reducer (you'll have your actual reducers here)
-const exampleReducer = (state = {}, action: any) => {
-  switch (action.type) {
-    case 'EXAMPLE_ACTION':
-      return { ...state, data: action.payload };
-    default:
-      return state;
-  }
-};
-
-// Combine all reducers into one root reducer
 const rootReducer = combineReducers({
-  example: exampleReducer,
+  reCaptcha: reCaptchaReducer,
   // Add other reducers here
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
