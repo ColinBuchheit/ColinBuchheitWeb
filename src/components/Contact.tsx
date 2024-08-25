@@ -1,7 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Box, Button, Container, Paper, TextField, Typography, Alert } from '@mui/material';
 import emailjs from 'emailjs-com';
 import ReCAPTCHA from 'react-google-recaptcha';
+
+// Declare the `grecaptcha` property on the `window` object
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 
 const ContactPage: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -13,14 +20,31 @@ const ContactPage: React.FC = () => {
   });
 
   const [feedback, setFeedback] = useState<string | null>(null);
-  const [recaptchaVerified, setRecaptchaVerified] = useState<boolean>(false);
+  const [recaptchaVerified, setRecaptchaVerified] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (feedback && feedback.includes('Please complete the reCAPTCHA.')) {
+      const timer = setTimeout(() => {
+        setFeedback(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedback]);
 
   const handleRecaptchaChange = (value: string | null) => {
-    setRecaptchaVerified(Boolean(value));
+    setRecaptchaVerified(value);
+    if (value) {
+      setFeedback(null);  // Clear feedback when reCAPTCHA is completed
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,10 +55,8 @@ const ContactPage: React.FC = () => {
       return;
     }
 
-    const recaptchaResponse = (document.getElementById('g-recaptcha-response') as HTMLInputElement)?.value;
-
-    if (!recaptchaResponse) {
-      setFeedback('Please complete the reCAPTCHA.');
+    if (!isValidEmail(formState.email)) {
+      setFeedback('Please enter a valid email address.');
       return;
     }
 
@@ -43,7 +65,7 @@ const ContactPage: React.FC = () => {
       from_email: formState.email,
       subject: formState.subject,
       message: formState.message,
-      'g-recaptcha-response': recaptchaResponse,
+      'g-recaptcha-response': recaptchaVerified,
     };
 
     if (formRef.current) {
@@ -62,7 +84,11 @@ const ContactPage: React.FC = () => {
             subject: '',
             message: '',
           });
-          setRecaptchaVerified(false); // Reset reCAPTCHA after successful submission
+          setRecaptchaVerified(null); // Reset reCAPTCHA after successful submission
+
+          if (window.grecaptcha) {
+            window.grecaptcha.reset();
+          }
 
           // Send an email to the user as confirmation
           emailjs.send(
@@ -91,6 +117,10 @@ const ContactPage: React.FC = () => {
       <Paper elevation={3} sx={{ padding: '2.5rem', backgroundColor: '#2a2a2a', color: '#ffffff', borderRadius: '8px' }}>
         <Typography variant="h4" color="primary" gutterBottom>
           Contact Me
+        </Typography>
+        <Typography variant="body1" gutterBottom sx={{ marginBottom: '1.5rem', color: '#ffffff' }}>
+        I’d love to hear from you! Whether you have a question, suggestion, or just want to connect, feel free to leave a message. Your feedback and inquiries are important to me, and I'll do my best to get back to you promptly.
+
         </Typography>
         {feedback && (
           <Alert
