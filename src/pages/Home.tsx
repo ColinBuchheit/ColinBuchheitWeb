@@ -32,16 +32,13 @@ const Home: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        <Paper elevation={3} sx={{ padding: '2rem', backgroundColor: '#2a2a2a', marginBottom: '2rem', color: '#ffffff', borderRadius: '8px' }}>
-          <Typography variant="h3" gutterBottom color="primary">
+        <Paper elevation={3} sx={{ padding: '2rem', backgroundColor: '#2a2a2a', marginBottom: '2rem', color: '#ffffff', borderRadius: '8px', textAlign: 'left' }}>
+          <Typography variant="h3" gutterBottom color="primary" sx={{ textAlign: 'center' }}>
             About Me
           </Typography>
           <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '1.75rem', lineHeight: '2', color: '#ffffff' }}>
             Hi, my name is Colin Buchheit. I'm a senior engineering student at the University of Missouri-Columbia, 
-            pursuing a Bachelor of Science in Information Technology. I am actively involved in several clubs, including:
-          </Typography>
-          <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '1.75rem', lineHeight: '2', color: '#ffffff' }}>
-            Mizzou Computing Association, Mizzou Space Program, Mizzou Student Astronomical Society
+            pursuing a Bachelor of Science in Information Technology. I am actively involved in several clubs, including Mizzou Computing Association, Mizzou Space Program, and Mizzou Student Astronomical Society.
           </Typography>
           <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '1.75rem', lineHeight: '2', color: '#ffffff' }}>
             On track to graduate in just three years, I've gained invaluable experience in the field of Information Technology. 
