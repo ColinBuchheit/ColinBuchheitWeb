@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, Container, Paper } from '@mui/material';
-import MotionButton from '../components/MotionButton';
+import { Box, Typography, Container, Paper, IconButton } from '@mui/material';
+import { GitHub, LinkedIn } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import MotionButton from '../components/MotionButton';
 
 const Home: React.FC = () => {
   return (
@@ -22,8 +23,18 @@ const Home: React.FC = () => {
             borderRadius: '50%',
             marginBottom: '2rem',
             border: '4px solid #4c7faf',
+            position: 'relative'
           }}
         />
+        {/* Social Icons */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '-40px' }}>
+          <IconButton href="https://github.com/ColinBuchheit" target="_blank" sx={{ margin: '0 1rem' }}>
+            <GitHub sx={{ color: '#ffffff', fontSize: '2.5rem' }} />
+          </IconButton>
+          <IconButton href="https://www.linkedin.com/in/colin-buchheit-02a3aa22b/" target="_blank" sx={{ margin: '0 1rem' }}>
+            <LinkedIn sx={{ color: '#ffffff', fontSize: '2.5rem' }} />
+          </IconButton>
+        </Box>
       </motion.div>
 
       {/* About Me Section */}
@@ -37,11 +48,11 @@ const Home: React.FC = () => {
             About Me
           </Typography>
           <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '1.75rem', lineHeight: '2', color: '#ffffff' }}>
-            Hi, my name is Colin Buchheit. I'm a senior engineering student at the University of Missouri-Columbia, 
-            pursuing a Bachelor of Science in Information Technology. I am actively involved in several clubs, including Mizzou Computing Association, Mizzou Space Program, and Mizzou Student Astronomical Society.
+            Hello, My name is Colin Buchheit. I'm a senior engineering student at the University of Missouri-Columbia, 
+            pursuing a Bachelor of Science in Information Technology witha emphasis in software development. I am actively involved in several clubs, including Mizzou Computing Association, Mizzou Space Program, and Mizzou Student Astronomical Society.
           </Typography>
           <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '1.75rem', lineHeight: '2', color: '#ffffff' }}>
-            On track to graduate in just three years, I've gained invaluable experience in the field of Information Technology. 
+            On track to graduate in just three years, I've gained invaluable experience in fields of Enterprise Software Development and Information Technology. 
             My broad knowledge base and specialized skills have prepared me for an exciting future in this ever-evolving industry.
             <br />
             Explore more about me by clicking the links on the page.
