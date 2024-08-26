@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                   fontWeight: 'bold',
                   color: '#007bff',
                   marginRight: '1.5rem',
-                  fontSize: '1.75rem',
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // Dynamic font size
                   cursor: 'pointer',
                   '&:hover': { color: '#0056b3' }
                 }}
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
                   fontWeight: 'bold',
                   color: '#007bff',
                   marginRight: '1.5rem',
-                  fontSize: '1.75rem',
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // Dynamic font size
                   cursor: 'pointer',
                   '&:hover': { color: '#0056b3' }
                 }}
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                   fontWeight: 'bold',
                   color: '#007bff',
                   marginRight: '1.5rem',
-                  fontSize: '1.75rem',
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // Dynamic font size
                   cursor: 'pointer',
                   '&:hover': { color: '#0056b3' }
                 }}
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                 sx={{
                   fontWeight: 'bold',
                   color: '#007bff',
-                  fontSize: '1.75rem',
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // Dynamic font size
                   cursor: 'pointer',
                   '&:hover': { color: '#0056b3' }
                 }}

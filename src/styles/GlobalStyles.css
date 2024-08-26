@@ -1,5 +1,3 @@
-/* GlobalStyles.css */
-
 :root {
   --primary-color: #4c7faf; 
   --secondary-color: #4c7faf; 
@@ -7,6 +5,12 @@
   --text-color: #ffffff; 
   --secondary-text-color: #b0b0b0; 
   --border-color: #4caf50;
+
+  /* Dynamic Font Sizing */
+  --base-font-size: 2vw;
+  --heading-font-size: clamp(2rem, 4vw, 3rem);
+  --subheading-font-size: clamp(1.5rem, 3vw, 2.5rem);
+  --body-font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 body, .app-container {
@@ -15,23 +19,16 @@ body, .app-container {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  font-size: 16px; /* Base font size */
-  font-size: 1rem; /* Fallback for rem units */
+  font-size: var(--base-font-size);
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  font-size: var(--heading-font-size);
 }
 
 a {
   color: var(--secondary-color);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
 }
 
 button {
@@ -41,7 +38,7 @@ button {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem; /* Button text size */
+  font-size: var(--body-font-size);
 }
 
 button:hover {
@@ -51,7 +48,6 @@ button:hover {
 .container, .main-content {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 1rem; /* Base padding */
 }
 
 .paper {
@@ -60,11 +56,13 @@ button:hover {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: var(--text-color);
+  font-size: var(--body-font-size);
 }
 
 ul {
   list-style-type: none;
   padding: 0;
+  font-size: var(--body-font-size);
 }
 
 ul li::before {
@@ -73,92 +71,15 @@ ul li::before {
   color: var(--primary-color);
 }
 
-/* Responsive Typography */
+/* Responsive Text Alignment */
+@media (max-width: 768px) {
+  .text-left {
+    text-align: left !important;
+  }
+}
+
 @media (min-width: 768px) {
-  body, .app-container {
-    font-size: 1.1rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2.2rem;
-  }
-
-  h3 {
-    font-size: 2rem;
-  }
-
-  h4 {
-    font-size: 1.8rem;
-  }
-
-  h5 {
-    font-size: 1.5rem;
-  }
-
-  h6 {
-    font-size: 1.3rem;
-  }
-
-  button {
-    font-size: 1.1rem;
-    padding: 12px 24px;
-  }
-}
-
-@media (min-width: 1200px) {
-  body, .app-container {
-    font-size: 1.2rem;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  h2 {
-    font-size: 2.8rem;
-  }
-
-  h3 {
-    font-size: 2.5rem;
-  }
-
-  h4 {
-    font-size: 2.2rem;
-  }
-
-  h5 {
-    font-size: 1.8rem;
-  }
-
-  h6 {
-    font-size: 1.5rem;
-  }
-
-  button {
-    font-size: 1.2rem;
-    padding: 14px 28px;
-  }
-}
-
-/* Viewport-based Typography */
-h1 {
-  font-size: 5vw; /* Scale with viewport width */
-}
-
-p {
-  font-size: 2vw; /* Scale with viewport width */
-}
-
-@media (min-width: 1200px) {
-  h1 {
-    font-size: 2.5vw;
-  }
-
-  p {
-    font-size: 1.5vw;
+  .text-center {
+    text-align: center !important;
   }
 }
