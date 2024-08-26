@@ -1,26 +1,85 @@
-/* Global CSS resets and styles */
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
+:root {
+  --primary-color: #4c7faf; 
+  --secondary-color: #4c7faf; 
+  --background-color: #121212; 
+  --text-color: #ffffff; 
+  --secondary-text-color: #b0b0b0; 
+  --border-color: #4caf50;
+
+  /* Dynamic Font Sizing */
+  --base-font-size: 2vw;
+  --heading-font-size: clamp(2rem, 4vw, 3rem);
+  --subheading-font-size: clamp(1.5rem, 3vw, 2.5rem);
+  --body-font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+body, .app-container {
+  background-color: var(--background-color) !important;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--base-font-size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  font-size: var(--heading-font-size);
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: var(--body-font-size);
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.container, .main-content {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.paper {
+  padding: 2.5rem;
+  background-color: #2a2a2a; /* Dark gray background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  font-size: var(--body-font-size);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: var(--body-font-size);
+}
+
+ul li::before {
+  content: "🔧";
+  padding-right: 8px;
+  color: var(--primary-color);
+}
+
+/* Responsive Text Alignment */
+@media (max-width: 768px) {
+  .text-left {
+    text-align: left !important;
   }
-  
-  a {
-    color: #ff9800;
-    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .text-center {
+    text-align: center !important;
   }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-  }
-  
+}
