@@ -6,7 +6,6 @@ import {
   Paper, 
   Box, 
   Link,
-  LinearProgress,
   Chip,
   Card,
   CardContent,
@@ -31,7 +30,9 @@ import {
   TimerOutlined,
   AssignmentOutlined,
   VerifiedUserOutlined,
-  Code
+  Code,
+  Memory as MemoryIcon,
+  Storage as StorageIcon
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -75,30 +76,6 @@ const item = {
 };
 
 const SkillsEducationPage: React.FC = () => {
-  // Programming Languages with skill levels
-  const programmingSkills = [
-    { name: "C#", level: 90, icon: <CodeIcon /> },
-    { name: "Python", level: 85, icon: <CodeIcon /> },
-    { name: "JavaScript", level: 90, icon: <CodeIcon /> },
-    { name: "TypeScript", level: 85, icon: <CodeIcon /> },
-    { name: "Java", level: 75, icon: <CodeIcon /> },
-    { name: "YAML", level: 80, icon: <TerminalOutlined /> },
-    { name: "Bash", level: 70, icon: <TerminalOutlined /> },
-    { name: "PowerShell", level: 75, icon: <TerminalOutlined /> }
-  ];
-  
-  // Technologies and frameworks
-  const technologies = [
-    { name: "React", icon: <DeveloperModeOutlined sx={{ color: '#61dafb' }} /> },
-    { name: "Azure DevOps", icon: <CloudOutlined sx={{ color: '#0078d4' }} /> },
-    { name: "GitHub", icon: <GitHub sx={{ color: '#ffffff' }} /> },
-    { name: ".NET", icon: <DeveloperModeOutlined sx={{ color: '#512bd4' }} /> },
-    { name: "SQL Server", icon: <StorageOutlined sx={{ color: '#cc2927' }} /> },
-    { name: "MongoDB", icon: <StorageOutlined sx={{ color: '#47A248' }} /> },
-    { name: "Windows", icon: <DeveloperModeOutlined sx={{ color: '#0078d7' }} /> },
-    { name: "Linux", icon: <DeveloperModeOutlined sx={{ color: '#FCC624' }} /> }
-  ];
-  
   // Soft skills
   const softSkills = [
     { name: "Team Collaboration", icon: <PeopleOutlined sx={{ color: '#4ecca3' }} /> },
@@ -265,7 +242,7 @@ const SkillsEducationPage: React.FC = () => {
                                 <VerifiedUserOutlined sx={{ color: '#6d9eeb', fontSize: '1.2rem' }} />
                               </ListItemIcon>
                               <ListItemText 
-                                primary="Overall GPA: 3.64, Major GPA: 3.94" 
+                                primary="Overall GPA: 3.72, Major GPA: 3.94" 
                                 primaryTypographyProps={{ color: 'rgba(255,255,255,0.8)' }}
                               />
                             </ListItem>
@@ -297,7 +274,7 @@ const SkillsEducationPage: React.FC = () => {
                               }} 
                             />
                             <Chip 
-                              label="IT Security" 
+                              label="Cyber Defense/Attack Tactics" 
                               size="small"
                               sx={{ 
                                 bgcolor: 'rgba(109, 158, 235, 0.1)', 
@@ -306,6 +283,22 @@ const SkillsEducationPage: React.FC = () => {
                             />
                             <Chip 
                               label="Database Systems" 
+                              size="small"
+                              sx={{ 
+                                bgcolor: 'rgba(109, 158, 235, 0.1)', 
+                                color: '#ffffff'
+                              }} 
+                            />
+                            <Chip 
+                              label="Full-Stack and Deployment" 
+                              size="small"
+                              sx={{ 
+                                bgcolor: 'rgba(109, 158, 235, 0.1)', 
+                                color: '#ffffff'
+                              }} 
+                            />
+                            <Chip 
+                              label="AI ML Model Training" 
                               size="small"
                               sx={{ 
                                 bgcolor: 'rgba(109, 158, 235, 0.1)', 
@@ -472,171 +465,261 @@ const SkillsEducationPage: React.FC = () => {
                     </Typography>
                   </Box>
                   
+                  {/* Programming Languages Section */}
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontWeight: 600,
+                      mb: 3,
+                      mt: 2
+                    }}
+                  >
+                    <CodeIcon sx={{ color: '#6d9eeb', mr: 1 }} /> Programming Languages
+                  </Typography>
+                  
+                  <Box sx={{ mb: 4, pl: 2 }}>
+                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                      • C#, Python, Java
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                      • JavaScript, TypeScript
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                      • SQL, NoSQL
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                      • YAML
+                    </Typography>
+                  </Box>
+                  
                   <Grid container spacing={4}>
-                    {/* Programming Languages */}
                     <Grid item xs={12} md={6}>
-                      <Typography 
-                        variant="h5" 
-                        sx={{ 
-                          fontWeight: 600,
-                          color: '#ffffff',
-                          mb: 3,
+                      {/* Cloud & DevOps Section */}
+                      <Typography
+                        variant="h5"
+                        sx={{
                           display: 'flex',
-                          alignItems: 'center'
+                          alignItems: 'center',
+                          fontWeight: 600,
+                          mb: 2
                         }}
                       >
-                        <CodeIcon sx={{ mr: 1, color: '#6d9eeb' }} />
-                        Programming Languages
+                        <CloudOutlined sx={{ color: '#4ecca3', mr: 1 }} /> Cloud & DevOps
                       </Typography>
                       
-                      <motion.div
-                        variants={container}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                      >
-                        {programmingSkills.map((skill, index) => (
-                          <motion.div key={skill.name} variants={item}>
-                            <Box sx={{ mb: 2.5 }}>
-                              <Box sx={{ 
-                                display: 'flex', 
-                                justifyContent: 'space-between',
-                                alignItems: 'center', 
-                                mb: 1
-                              }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                  <Box sx={{ 
-                                    mr: 1.5, 
-                                    color: '#6d9eeb',
-                                    display: 'flex'
-                                  }}>
-                                    {skill.icon}
-                                  </Box>
-                                  <Typography variant="body1" sx={{ color: '#ffffff' }}>
-                                    {skill.name}
-                                  </Typography>
-                                </Box>
-                                <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
-                                  {skill.level}%
-                                </Typography>
-                              </Box>
-                              <LinearProgress 
-                                variant="determinate" 
-                                value={skill.level} 
-                                sx={{
-                                  height: 8,
-                                  borderRadius: 4,
-                                  backgroundColor: 'rgba(255,255,255,0.05)',
-                                  '& .MuiLinearProgress-bar': {
-                                    borderRadius: 4,
-                                    background: index % 2 === 0 
-                                      ? 'linear-gradient(90deg, #6d9eeb 0%, #4a7cc3 100%)'
-                                      : 'linear-gradient(90deg, #4ecca3 0%, #3c9d7c 100%)'
-                                  }
-                                }}
-                              />
-                            </Box>
-                          </motion.div>
-                        ))}
-                      </motion.div>
-                    </Grid>
-                    
-                    {/* Technologies and Frameworks */}
-                    <Grid item xs={12} md={6}>
-                      <Typography 
-                        variant="h5" 
-                        sx={{ 
-                          fontWeight: 600,
-                          color: '#ffffff',
-                          mb: 3,
-                          display: 'flex',
-                          alignItems: 'center'
-                        }}
-                      >
-                        <DeveloperModeOutlined sx={{ mr: 1, color: '#4ecca3' }} />
-                        Technologies & Platforms
-                      </Typography>
-                      
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
-                        {technologies.map((tech, index) => (
-                          <motion.div
-                            key={tech.name}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1, duration: 0.3 }}
-                            viewport={{ once: true }}
-                            whileHover={{ 
-                              scale: 1.05, 
-                              transition: { duration: 0.2 } 
-                            }}
-                          >
-                            <Box sx={{ 
-                              display: 'flex', 
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              bgcolor: 'rgba(255,255,255,0.03)',
-                              borderRadius: '8px',
-                              p: 2,
-                              minWidth: '100px',
-                              border: '1px solid rgba(255,255,255,0.08)',
-                              transition: 'all 0.3s',
-                              '&:hover': {
-                                bgcolor: 'rgba(255,255,255,0.05)',
-                                border: '1px solid rgba(255,255,255,0.15)',
-                              }
-                            }}>
-                              <Box sx={{ mb: 1 }}>
-                                {tech.icon}
-                              </Box>
-                              <Typography variant="body2" sx={{ color: '#ffffff', textAlign: 'center' }}>
-                                {tech.name}
-                              </Typography>
-                            </Box>
-                          </motion.div>
-                        ))}
+                      <Box sx={{ mb: 4, pl: 2 }}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • <strong>Microsoft Azure</strong>: Azure Pipelines, Blob Storage, Kubernetes, Brick
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Docker
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • GitHub Actions
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • CI/CD Best Practices
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Linux Environments (Ubuntu, Debian, Kali, Parrot Security)
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • WireGuard VPN Configuration & Deployment
+                        </Typography>
                       </Box>
                       
-                      <Typography 
-                        variant="h5" 
-                        sx={{ 
-                          fontWeight: 600,
-                          color: '#ffffff',
-                          mt: 4,
-                          mb: 3,
+                      {/* Scripting & Markup Section */}
+                      <Typography
+                        variant="h5"
+                        sx={{
                           display: 'flex',
-                          alignItems: 'center'
+                          alignItems: 'center',
+                          fontWeight: 600,
+                          mb: 2
                         }}
                       >
-                        <PeopleOutlined sx={{ mr: 1, color: '#4ecca3' }} />
-                        Soft Skills & Methodologies
+                        <TerminalOutlined sx={{ color: '#6d9eeb', mr: 1 }} /> Scripting & Markup
                       </Typography>
                       
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {softSkills.map((skill, index) => (
-                          <motion.div
-                            key={skill.name}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1, duration: 0.3 }}
-                            viewport={{ once: true }}
-                          >
-                            <Chip 
-                              icon={skill.icon}
-                              label={skill.name} 
-                              sx={{ 
-                                bgcolor: 'rgba(78, 204, 163, 0.1)', 
-                                color: '#ffffff',
-                                border: '1px solid rgba(78, 204, 163, 0.2)',
-                                '& .MuiChip-icon': {
-                                  color: '#4ecca3'
-                                }
-                              }} 
-                            />
-                          </motion.div>
-                        ))}
+                      <Box sx={{ mb: 4, pl: 2 }}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Bash, PowerShell
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • HTML, CSS
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • JSON, YAML
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • Markdown
+                        </Typography>
+                      </Box>
+                    </Grid>
+                    
+                    <Grid item xs={12} md={6}>
+                      {/* Databases & Storage Section */}
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          fontWeight: 600,
+                          mb: 2
+                        }}
+                      >
+                        <StorageIcon sx={{ color: '#4ecca3', mr: 1 }} /> Databases & Storage
+                      </Typography>
+                      
+                      <Box sx={{ mb: 4, pl: 2 }}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • PostgreSQL, MongoDB, MySQL
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Microsoft SQL Server
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Redis, Firebase
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • Azure Blob Storage
+                        </Typography>
+                      </Box>
+                      
+                      {/* Frameworks & Libraries Section */}
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          fontWeight: 600,
+                          mb: 2
+                        }}
+                      >
+                        <DeveloperModeOutlined sx={{ color: '#6d9eeb', mr: 1 }} /> Frameworks & Libraries
+                      </Typography>
+                      
+                      <Box sx={{ mb: 4, pl: 2 }}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • React / Next.js
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Node.js / Express.js
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Tailwind CSS, Material UI
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • .NET / ASP.NET Core
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • FastAPI
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Redux
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Three.js
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • BeautifulSoup, Scrapy
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • CrewAI
+                        </Typography>
                       </Box>
                     </Grid>
                   </Grid>
+                  
+                  {/* AI & Machine Learning Section */}
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontWeight: 600,
+                      mb: 2,
+                      mt: 2
+                    }}
+                  >
+                    <MemoryIcon sx={{ color: '#4ecca3', mr: 1 }} /> AI & Machine Learning
+                  </Typography>
+                  
+                  <Box sx={{ mb: 4, pl: 2 }}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} md={6}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • OpenAI API (GPT-4, GPT-4o)
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Claude 3.7 Sonnet API
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • LangChain
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Scikit-learn, TensorFlow, PyTorch
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • NLP & Prompt Engineering
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Decision Trees, Neural Networks
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • Reinforcement Learning
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 1 }}>
+                          • ML Model Training & Evaluation
+                        </Typography>
+                        <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                          • Multi-Agent AI Networks (CrewAI Orchestration & Pipelines)
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                  
+                  {/* Professional & Soft Skills Section */}
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontWeight: 600,
+                      mb: 3
+                    }}
+                  >
+                    <PeopleOutlined sx={{ color: '#6d9eeb', mr: 1 }} /> Professional & Soft Skills
+                  </Typography>
+                  
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                    {softSkills.map((skill, index) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
+                        viewport={{ once: true }}
+                      >
+                        <Chip 
+                          icon={skill.icon}
+                          label={skill.name} 
+                          sx={{ 
+                            bgcolor: 'rgba(78, 204, 163, 0.1)', 
+                            color: '#ffffff',
+                            border: '1px solid rgba(78, 204, 163, 0.2)',
+                            '& .MuiChip-icon': {
+                              color: '#4ecca3'
+                            }
+                          }} 
+                        />
+                      </motion.div>
+                    ))}
+                  </Box>
                 </Box>
               </Paper>
             </motion.div>
@@ -694,7 +777,6 @@ const SkillsEducationPage: React.FC = () => {
                           <Security sx={{ mr: 1.5, color: '#6d9eeb' }} />
                           In-Progress Certifications
                         </Typography>
-                        
                         <List dense>
                           <ListItem>
                             <ListItemIcon sx={{ minWidth: '30px' }}>
@@ -708,7 +790,7 @@ const SkillsEducationPage: React.FC = () => {
                               />
                             </ListItemIcon>
                             <ListItemText 
-                              primary="Information Systems and Technology Certificate" 
+                              primary="Cybersecurity Certificate" 
                               primaryTypographyProps={{ color: 'rgba(255,255,255,0.9)' }}
                             />
                           </ListItem>
@@ -724,7 +806,7 @@ const SkillsEducationPage: React.FC = () => {
                               />
                             </ListItemIcon>
                             <ListItemText 
-                              primary="Cybersecurity Certificate" 
+                              primary="Azure AI Engineer Associate (AI-102)" 
                               primaryTypographyProps={{ color: 'rgba(255,255,255,0.9)' }}
                             />
                           </ListItem>
@@ -749,6 +831,24 @@ const SkillsEducationPage: React.FC = () => {
                         </Typography>
                         
                         <List dense>
+                          <ListItem>
+                            <ListItemIcon sx={{ minWidth: '30px' }}>
+                              <Box 
+                                sx={{ 
+                                  width: 8, 
+                                  height: 8, 
+                                  bgcolor: '#4ecca3',
+                                  borderRadius: '50%'
+                                }} 
+                              />
+                            </ListItemIcon>
+                            <ListItemText 
+                              primary="Information Systems and Technology Certificate" 
+                              secondary="University of Missouri"
+                              primaryTypographyProps={{ color: 'rgba(255,255,255,0.9)' }}
+                              secondaryTypographyProps={{ color: 'rgba(255,255,255,0.7)' }}
+                            />
+                          </ListItem>
                           <ListItem>
                             <ListItemIcon sx={{ minWidth: '30px' }}>
                               <Box 
@@ -786,6 +886,8 @@ const SkillsEducationPage: React.FC = () => {
                                   </Link>
                                 </Box>
                               }
+                              secondary="Coursera"
+                              secondaryTypographyProps={{ color: 'rgba(255,255,255,0.7)' }}
                             />
                           </ListItem>
                         </List>
