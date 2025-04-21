@@ -1,176 +1,622 @@
 import React from 'react';
-import { Container, Grid, Typography, Paper, Box, Link } from '@mui/material';
+import { 
+  Container, 
+  Grid, 
+  Typography, 
+  Paper, 
+  Box, 
+  Link,
+  Divider,
+  Chip,
+  useTheme,
+  useMediaQuery
+} from '@mui/material';
+import { 
+  WorkOutline as WorkIcon,
+  Code as CodeIcon,
+  Domain as DomainIcon,
+  Storage as StorageIcon,
+  DesignServices as DesignIcon,
+  Timeline as TimelineIcon,
+  Build as BuildIcon
+} from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { duration: 0.6 }
+  }
+};
+
+const slideInRight = {
+  hidden: { x: 50, opacity: 0 },
+  visible: { 
+    x: 0, 
+    opacity: 1,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
 const ExperiencePage: React.FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  
+  // Skill tags for easy reuse
+  const skillChip = (label: string) => (
+    <Chip 
+      label={label} 
+      size="small"
+      sx={{ 
+        bgcolor: 'rgba(109, 158, 235, 0.1)', 
+        color: '#ffffff',
+        m: 0.5
+      }} 
+    />
+  );
+  
   return (
-    <Container maxWidth="lg" sx={{ marginTop: '8rem', paddingBottom: '4rem' }}>
-      <Typography variant="h3" color="primary" gutterBottom>
-        Experience
-      </Typography>
-
-      {/* MX Holdings Internship */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Paper elevation={3} sx={{ padding: '2.5rem', backgroundColor: '#2a2a2a', color: '#ffffff', marginBottom: '2rem', borderRadius: '8px' }}>
-          <Typography variant="h4" color="primary" gutterBottom>
-            MX Holdings: Enterprise Software Developer Internship
-          </Typography>
-          <Typography variant="body1" sx={{ marginBottom: '1.5rem', fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-            <strong>Duration:</strong> Summer 2024 - Present (Continuing Part-Time)
-          </Typography>
-          <Typography variant="body1" sx={{ marginBottom: '1.5rem', fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-            During my internship at MX Holdings, I engaged in a variety of challenging projects that significantly advanced my technical skills in software development and IT infrastructure management. Here are some key contributions:
-          </Typography>
-
-          <Grid container spacing={2} sx={{ marginTop: '2rem' }}>
-            <Grid item xs={12}>
-              <Typography variant="h5" color="primary" gutterBottom>
-                Internal System Diagnostics Dashboard
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                <strong>Project Overview:</strong> Developed a robust internal diagnostics dashboard providing a centralized platform to monitor and diagnose recurring and critical errors across all enterprise applications.
-              </Typography>
-              <Typography variant="body1" sx={{ marginTop: '1rem', fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                <strong>Technical Highlights:</strong>
-                <ul>
-                  <li><strong>API Development:</strong> Engineered APIs using C# in the back-end to efficiently aggregate and retrieve error data from multiple data sources.</li>
-                  <li><strong>Web Dashboard:</strong> Leveraged React.js and Material-UI libraries to design a dynamic and user-friendly interface, offering real-time insights and analytics on system performance.</li>
-                  <li><strong>State Management:</strong> Utilized Redux for scalable state management, ensuring seamless data flow and responsiveness within the application.</li>
-                </ul>
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <Grid container spacing={2} sx={{ marginTop: '2rem' }}>
-            <Grid item xs={12}>
-              <Typography variant="h5" color="primary" gutterBottom>
-                Market Pricing Application
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                <strong>Project Overview:</strong> Developed an advanced software application for detailed analysis and visualization of metal commodity prices, facilitating strategic market insights.
-              </Typography>
-              <Typography variant="body1" sx={{ marginTop: '1rem', fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                <strong>Technical Highlights:</strong>
-                <ul>
-                  <li><strong>Data Visualization:</strong> Implemented and enabled users to explore daily, monthly, and quarterly price trends. In progress project with plans to expand features covering data visualization displays as well as multiple other utilities.</li>
-                  <li><strong>Backend Integration:</strong> Worked with Node.js as well as Material-UI library imports to create backend services that handled complex data queries and transformations, providing accurate and timely pricing information. Offered detailed price breakdowns for transparency.</li>
-                  <li><strong>Automation & Deployment:</strong> Deployed the application using YAML pipeline scripts on Azure DevOps, ensuring consistent and automated builds and deployments.</li>
-                </ul>
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <Grid container spacing={2} sx={{ marginTop: '2rem' }}>
-            <Grid item xs={12}>
-              <Typography variant="h5" color="primary" gutterBottom>
-                Additional Contributions
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                <ul>
-                  <li><strong>Pipeline Deployment:</strong> Developed and optimized YAML-based CI/CD pipelines on Azure DevOps, facilitating automated testing and deployment workflows across multiple environments.</li>
-                  <li><strong>NPM Package Creation:</strong> Created reusable npm packages to standardize internal templates and streamline development processes across different projects, enhancing code reusability and consistency.</li>
-                </ul>
-              </Typography>
-            </Grid>
-          </Grid>
-
-          {/* Images Section */}
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src="/images/MoultonTrip.jpg"
-                alt="Moulton Trip"
-                sx={{ width: '80%', height: 'auto', borderRadius: '8px', margin: 'auto' }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src="/images/InternPresentation.jpg"
-                alt="Intern Presentation"
-                sx={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-              />
-            </Grid>
-          </Grid>
-
-          <Box sx={{ marginTop: '2rem' }}>
-            <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-              This internship provided a comprehensive experience in full-stack development and IT infrastructure management within a fast-paced enterprise environment. I not only honed my technical skills but also gained valuable insights into the importance of scalable software design, efficient pipeline management, and the critical role of IT infrastructure in supporting business operations.
+    <Box
+      sx={{
+        background: 'linear-gradient(135deg, #121212 0%, #1a1a1a 100%)',
+        pt: { xs: 8, md: 12 },
+        pb: 8,
+        minHeight: '100vh'
+      }}
+    >
+      <Container maxWidth="lg">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <Box sx={{ mb: 5, textAlign: { xs: 'center', md: 'left' } }}>
+            <Typography 
+              variant="overline" 
+              color="primary"
+              sx={{ letterSpacing: 2, fontWeight: 500 }}
+            >
+              PROFESSIONAL JOURNEY
+            </Typography>
+            <Typography 
+              variant="h3" 
+              color="primary" 
+              gutterBottom
+              sx={{ 
+                fontWeight: 700,
+                fontSize: { xs: '2rem', md: '2.5rem' },
+                background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              Work Experience
+            </Typography>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'rgba(255,255,255,0.7)',
+                maxWidth: '800px',
+                mx: { xs: 'auto', md: 0 }
+              }}
+            >
+              A showcase of my professional experience, projects, and technical contributions.
             </Typography>
           </Box>
-        </Paper>
-      </motion.div>
-
-      {/* Mizzou Hackathon */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Paper elevation={3} sx={{ padding: '2.5rem', backgroundColor: '#2a2a2a', color: '#ffffff', marginBottom: '2rem', borderRadius: '8px' }}>
-          <Typography variant="h4" color="primary" gutterBottom>
-            Mizzou Hackathon 2023: Rapid Reels Project
-          </Typography>
-          <Typography variant="body1" sx={{ marginBottom: '1.5rem', fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-            Rapid Reels, a project developed by Mikey Joyce, Zack Murry, Gage Smith, and Colin Buchheit, secured first place in the developer category at TigerHacks 2023, the University of Missouri's annual hackathon. Our project automates the process of trimming the most engaging parts of longer videos, addressing the rising popularity of short-form video content on platforms like TikTok, Instagram Reels, and YouTube Shorts. Check out our project on <Link href="https://devpost.com/software/rapidreels" target="_blank" color="primary">Devpost</Link>.
-          </Typography>
-
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src="/images/HomePage.png"
-                alt="Rapid Reels Home Page"
-                sx={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h5" color="primary" gutterBottom>
-                Data Processing and Signal Analysis
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-                Our data processing pipeline involved downloading video and replay rate heatmaps, applying a signal processing algorithm to find maxima within the heatmap, and generating clip boundaries to create highlight reels. The following graphs illustrate our signal processing methodology.
-              </Typography>
-            </Grid>
+        </motion.div>
+        
+        {/* Experience Timeline */}
+        <Grid container spacing={4}>
+          {/* MX Holdings Internship */}
+          <Grid item xs={12}>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={slideInRight}
+            >
+              <Paper 
+                elevation={0}
+                sx={{ 
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+                  border: '1px solid rgba(255,255,255,0.05)'
+                }}
+              >
+                {/* Header with gradient */}
+                <Box 
+                  sx={{ 
+                    p: 0.5, 
+                    background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
+                  }}
+                />
+                
+                <Box sx={{ p: { xs: 3, md: 4 } }}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} md={8}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <WorkIcon sx={{ color: '#6d9eeb', mr: 2, fontSize: '2rem' }} />
+                        <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
+                          MX Holdings
+                        </Typography>
+                      </Box>
+                      
+                      <Typography variant="h5" sx={{ mb: 2, color: '#ffffff' }}>
+                        Enterprise Software Developer Internship
+                      </Typography>
+                      
+                      <Typography 
+                        variant="subtitle1" 
+                        sx={{ 
+                          mb: 3, 
+                          color: 'rgba(255,255,255,0.7)',
+                          fontWeight: 500
+                        }}
+                      >
+                        Summer 2024 - Present (Continuing Part-Time)
+                      </Typography>
+                      
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          mb: 3,
+                          color: 'rgba(255,255,255,0.9)',
+                          lineHeight: 1.8
+                        }}
+                      >
+                        During my internship at MX Holdings, I engaged in various challenging projects 
+                        that significantly advanced my technical skills in software development and IT 
+                        infrastructure management. Working within enterprise environments provided valuable 
+                        experience with production-grade systems and development methodologies.
+                      </Typography>
+                    </Grid>
+                    
+                    <Grid item xs={12} md={4}>
+                      <Box
+                        sx={{
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Box 
+                          component="img"
+                          src="/images/InternPresentation.jpg"
+                          alt="Intern Presentation"
+                          sx={{ 
+                            maxWidth: '100%',
+                            height: 'auto',
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </Box>
+                    </Grid>
+                  </Grid>
+                  
+                  <Divider sx={{ my: 3, borderColor: 'rgba(255,255,255,0.1)' }} />
+                  
+                  {/* Project 1 */}
+                  <Box sx={{ mb: 4 }}>
+                    <Typography 
+                      variant="h5" 
+                      color="primary" 
+                      gutterBottom
+                      sx={{ fontWeight: 600 }}
+                    >
+                      <CodeIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      Internal System Diagnostics Dashboard
+                    </Typography>
+                    
+                    <Typography 
+                      variant="body1" 
+                      sx={{ 
+                        mb: 2, 
+                        fontWeight: 500,
+                        color: 'rgba(255,255,255,0.9)',
+                      }}
+                    >
+                      Developed a robust internal diagnostics dashboard providing a centralized platform 
+                      to monitor and diagnose recurring and critical errors across all enterprise applications.
+                    </Typography>
+                    
+                    <Box sx={{ mb: 2 }}>
+                      <Typography 
+                        variant="subtitle2" 
+                        color="primary"
+                        sx={{ mb: 1 }}
+                      >
+                        Technical Highlights:
+                      </Typography>
+                      
+                      <Box 
+                        sx={{ 
+                          backgroundColor: 'rgba(255,255,255,0.03)',
+                          p: 2,
+                          borderRadius: '8px',
+                          borderLeft: '4px solid #6d9eeb'
+                        }}
+                      >
+                        <Typography variant="body2" sx={{ mb: 1.5, color: '#ffffff' }}>
+                          • <strong>API Development:</strong> Engineered APIs using C# in the back-end to efficiently 
+                          aggregate and retrieve error data from multiple data sources.
+                        </Typography>
+                        <Typography variant="body2" sx={{ mb: 1.5, color: '#ffffff' }}>
+                          • <strong>Web Dashboard:</strong> Leveraged React.js and Material-UI libraries to design 
+                          a dynamic and user-friendly interface, offering real-time insights and analytics on system performance.
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                          • <strong>State Management:</strong> Utilized Redux for scalable state management, 
+                          ensuring seamless data flow and responsiveness within the application.
+                        </Typography>
+                      </Box>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                      {skillChip('C#')}
+                      {skillChip('React')}
+                      {skillChip('Redux')}
+                      {skillChip('Material-UI')}
+                      {skillChip('API Development')}
+                    </Box>
+                  </Box>
+                  
+                  {/* Project 2 */}
+                  <Box sx={{ mb: 4 }}>
+                    <Typography 
+                      variant="h5" 
+                      color="primary" 
+                      gutterBottom
+                      sx={{ fontWeight: 600 }}
+                    >
+                      <StorageIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      Market Pricing Application
+                    </Typography>
+                    
+                    <Typography 
+                      variant="body1" 
+                      sx={{ 
+                        mb: 2, 
+                        fontWeight: 500,
+                        color: 'rgba(255,255,255,0.9)',
+                      }}
+                    >
+                      Developed an advanced software application for detailed analysis and visualization 
+                      of metal commodity prices, facilitating strategic market insights.
+                    </Typography>
+                    
+                    <Box sx={{ mb: 2 }}>
+                      <Typography 
+                        variant="subtitle2" 
+                        color="primary"
+                        sx={{ mb: 1 }}
+                      >
+                        Technical Highlights:
+                      </Typography>
+                      
+                      <Box 
+                        sx={{ 
+                          backgroundColor: 'rgba(255,255,255,0.03)',
+                          p: 2,
+                          borderRadius: '8px',
+                          borderLeft: '4px solid #4ecca3'
+                        }}
+                      >
+                        <Typography variant="body2" sx={{ mb: 1.5, color: '#ffffff' }}>
+                          • <strong>Data Visualization:</strong> Implemented interactive charts enabling users to explore 
+                          daily, monthly, and quarterly price trends.
+                        </Typography>
+                        <Typography variant="body2" sx={{ mb: 1.5, color: '#ffffff' }}>
+                          • <strong>Backend Integration:</strong> Created backend services with Node.js that handled 
+                          complex data queries and transformations, providing accurate pricing information.
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                          • <strong>Automation & Deployment:</strong> Deployed the application using YAML pipeline scripts 
+                          on Azure DevOps, ensuring consistent and automated builds and deployments.
+                        </Typography>
+                      </Box>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                      {skillChip('Node.js')}
+                      {skillChip('Data Visualization')}
+                      {skillChip('Azure DevOps')}
+                      {skillChip('YAML')}
+                      {skillChip('Material-UI')}
+                    </Box>
+                  </Box>
+                  
+                  {/* Additional Contributions */}
+                  <Box>
+                    <Typography 
+                      variant="h5" 
+                      color="primary" 
+                      gutterBottom
+                      sx={{ fontWeight: 600 }}
+                    >
+                      <BuildIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      Additional Contributions
+                    </Typography>
+                    
+                    <Box 
+                      sx={{ 
+                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        p: 2,
+                        borderRadius: '8px'
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ mb: 1.5, color: '#ffffff' }}>
+                        • <strong>Pipeline Deployment:</strong> Developed and optimized YAML-based CI/CD pipelines on Azure DevOps, 
+                        facilitating automated testing and deployment workflows across multiple environments.
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                        • <strong>NPM Package Creation:</strong> Created reusable npm packages to standardize internal templates 
+                        and streamline development processes across different projects, enhancing code reusability and consistency.
+                      </Typography>
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                      {skillChip('CI/CD')}
+                      {skillChip('YAML')}
+                      {skillChip('NPM')}
+                      {skillChip('Azure DevOps')}
+                    </Box>
+                  </Box>
+                  
+                  {/* Images Section with improved styling */}
+                  <Grid container spacing={3} sx={{ mt: 3 }}>
+                    <Grid item xs={12} sm={6}>
+                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Box
+                          component="img"
+                          src="/images/MoultonTrip.jpg"
+                          alt="Moulton Trip"
+                          sx={{ 
+                            width: '100%', 
+                            height: 'auto', 
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </motion.div>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Box
+                          component="img"
+                          src="/images/InternPresentation.jpg"
+                          alt="Intern Presentation"
+                          sx={{ 
+                            width: '100%', 
+                            height: 'auto', 
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </motion.div>
+                    </Grid>
+                  </Grid>
+                  
+                  {/* Conclusion */}
+                  <Box sx={{ mt: 4, p: 3, backgroundColor: 'rgba(109, 158, 235, 0.05)', borderRadius: '8px' }}>
+                    <Typography variant="body1" sx={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.9)' }}>
+                      This internship provided a comprehensive experience in full-stack development and IT infrastructure 
+                      management within a fast-paced enterprise environment. I not only honed my technical skills but also 
+                      gained valuable insights into the importance of scalable software design, efficient pipeline management, 
+                      and the critical role of IT infrastructure in supporting business operations.
+                    </Typography>
+                  </Box>
+                </Box>
+              </Paper>
+            </motion.div>
           </Grid>
-
-          <Grid container spacing={2} alignItems="center" sx={{ marginTop: '2rem' }}>
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src="/images/Histogram1.png"
-                alt="Histogram 1"
-                sx={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Box
-                component="img"
-                src="/images/Histogram2.png"
-                alt="Histogram 2"
-                sx={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-              />
-            </Grid>
+          
+          {/* Mizzou Hackathon */}
+          <Grid item xs={12}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideInRight}
+            >
+              <Paper 
+                elevation={0}
+                sx={{ 
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+                  border: '1px solid rgba(255,255,255,0.05)'
+                }}
+              >
+                {/* Header with gradient */}
+                <Box 
+                  sx={{ 
+                    p: 0.5, 
+                    background: 'linear-gradient(90deg, #4ecca3 0%, #6d9eeb 100%)'
+                  }}
+                />
+                
+                <Box sx={{ p: { xs: 3, md: 4 } }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <TimelineIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
+                    <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
+                      Mizzou Hackathon 2023
+                    </Typography>
+                  </Box>
+                  
+                  <Typography variant="h5" sx={{ mb: 2, color: '#ffffff' }}>
+                    Rapid Reels Project - First Place Winner
+                  </Typography>
+                  
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      mb: 3,
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 1.8
+                    }}
+                  >
+                    Rapid Reels, a project developed by Mikey Joyce, Zack Murry, Gage Smith, and Colin Buchheit, 
+                    secured first place in the developer category at TigerHacks 2023. Our project automates the process 
+                    of trimming the most engaging parts of longer videos, addressing the rising popularity of short-form 
+                    video content on platforms like TikTok, Instagram Reels, and YouTube Shorts.
+                  </Typography>
+                  
+                  <Box sx={{ mb: 3 }}>
+                    <Link 
+                      href="https://devpost.com/software/rapidreels" 
+                      target="_blank"
+                      sx={{ 
+                        color: '#4ecca3',
+                        display: 'inline-block',
+                        fontWeight: 500,
+                        py: 1,
+                        px: 2,
+                        borderRadius: '4px',
+                        backgroundColor: 'rgba(78, 204, 163, 0.1)',
+                        textDecoration: 'none',
+                        '&:hover': {
+                          backgroundColor: 'rgba(78, 204, 163, 0.2)',
+                        }
+                      }}
+                    >
+                      View Project on Devpost
+                    </Link>
+                  </Box>
+                  
+                  <Grid container spacing={3} alignItems="center">
+                    <Grid item xs={12} md={6}>
+                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Box
+                          component="img"
+                          src="/images/HomePage.png"
+                          alt="Rapid Reels Home Page"
+                          sx={{ 
+                            width: '100%', 
+                            height: 'auto', 
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </motion.div>
+                    </Grid>
+                    
+                    <Grid item xs={12} md={6}>
+                      <Typography variant="h5" color="primary" gutterBottom sx={{ fontWeight: 600 }}>
+                        Data Processing and Signal Analysis
+                      </Typography>
+                      
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: 'rgba(255,255,255,0.9)',
+                          lineHeight: 1.8
+                        }}
+                      >
+                        Our data processing pipeline involved downloading video and replay rate heatmaps, 
+                        applying a signal processing algorithm to find maxima within the heatmap, and generating 
+                        clip boundaries to create highlight reels. The graphs below illustrate our signal 
+                        processing methodology.
+                      </Typography>
+                      
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                        {skillChip('Python')}
+                        {skillChip('Signal Processing')}
+                        {skillChip('Data Analysis')}
+                        {skillChip('Video Processing')}
+                        {skillChip('Flask')}
+                      </Box>
+                    </Grid>
+                  </Grid>
+                  
+                  <Grid container spacing={3} sx={{ mt: 2 }}>
+                    <Grid item xs={12} sm={6}>
+                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Box
+                          component="img"
+                          src="/images/Histogram1.png"
+                          alt="Histogram 1"
+                          sx={{ 
+                            width: '100%', 
+                            height: 'auto', 
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </motion.div>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Box
+                          component="img"
+                          src="/images/Histogram2.png"
+                          alt="Histogram 2"
+                          sx={{ 
+                            width: '100%', 
+                            height: 'auto', 
+                            borderRadius: '12px',
+                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                            border: '1px solid rgba(255,255,255,0.1)'
+                          }}
+                        />
+                      </motion.div>
+                    </Grid>
+                  </Grid>
+                  
+                  <Box 
+                    sx={{ 
+                      mt: 4, 
+                      p: 3, 
+                      backgroundColor: 'rgba(78, 204, 163, 0.05)', 
+                      borderRadius: '8px',
+                      border: '1px solid rgba(78, 204, 163, 0.1)'
+                    }}
+                  >
+                    <Typography variant="h6" color="primary" gutterBottom>
+                      Data Processing Steps:
+                    </Typography>
+                    <Typography variant="body2" component="div" sx={{ color: '#ffffff' }}>
+                      <ol style={{ paddingLeft: '1.5rem' }}>
+                        <li style={{ marginBottom: '0.5rem' }}>
+                          Download the data: video and replay rate heatmap.
+                        </li>
+                        <li style={{ marginBottom: '0.5rem' }}>
+                          Utilize a signal processing algorithm to find the maxima of the heatmap and create bounds 
+                          that represent the beginning and ends of clips.
+                        </li>
+                        <li>
+                          Clip up the video at the timestamp of the given bounds and save it to the filesystem.
+                        </li>
+                      </ol>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Paper>
+            </motion.div>
           </Grid>
-
-          <Box sx={{ marginTop: '2rem' }}>
-            <Typography variant="body1" sx={{ fontSize: 'clamp(16px, 1.2vw, 20px)', lineHeight: '1.8', color: '#ffffff' }}>
-              Data Processing Steps:
-              <ol>
-                <li>Download the data: video and replay rate heatmap.</li>
-                <li>Utilize a signal processing algorithm to find the maxima of the heatmap and create bounds that represent the beginning and ends of clips.</li>
-                <li>Clip up the video at the timestamp of the given bounds and save it to the filesystem.</li>
-              </ol>
-            </Typography>
-          </Box>
-        </Paper>
-      </motion.div>
-    </Container>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
