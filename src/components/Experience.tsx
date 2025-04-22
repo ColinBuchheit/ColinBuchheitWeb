@@ -428,6 +428,7 @@ const ExperiencePage: React.FC = () => {
             </motion.div>
           </Grid>
           
+
           {/* Mizzou Hackathon */}
           <Grid item xs={12}>
             <motion.div
@@ -458,7 +459,7 @@ const ExperiencePage: React.FC = () => {
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <TimelineIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
                     <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
-                      Mizzou Hackathon 2023
+                      TigerHacks 2023
                     </Typography>
                   </Box>
                   
@@ -474,10 +475,7 @@ const ExperiencePage: React.FC = () => {
                       lineHeight: 1.8
                     }}
                   >
-                    Rapid Reels, a project developed by Mikey Joyce, Zack Murry, Gage Smith, and Colin Buchheit, 
-                    secured first place in the developer category at TigerHacks 2023. Our project automates the process 
-                    of trimming the most engaging parts of longer videos, addressing the rising popularity of short-form 
-                    video content on platforms like TikTok, Instagram Reels, and YouTube Shorts.
+                    As part of a four-person team, I developed "Rapid Reels," an innovative application that automates the creation of short-form video content. Our solution was awarded first place in the developer category at TigerHacks 2023, the University of Missouri's annual hackathon, competing against 33 other projects.
                   </Typography>
                   
                   <Box sx={{ mb: 3 }}>
@@ -522,7 +520,7 @@ const ExperiencePage: React.FC = () => {
                     
                     <Grid item xs={12} md={6}>
                       <Typography variant="h5" color="primary" gutterBottom sx={{ fontWeight: 600 }}>
-                        Data Processing and Signal Analysis
+                        Project Overview
                       </Typography>
                       
                       <Typography 
@@ -532,29 +530,74 @@ const ExperiencePage: React.FC = () => {
                           lineHeight: 1.8
                         }}
                       >
-                        Our data processing pipeline involved downloading video and replay rate heatmaps, 
-                        applying a signal processing algorithm to find maxima within the heatmap, and generating 
-                        clip boundaries to create highlight reels. The graphs below illustrate our signal 
-                        processing methodology.
+                        Rapid Reels addresses the challenges content creators face with short-form video content on platforms like TikTok, Instagram Reels, and YouTube Shorts. Our solution automates the process of identifying and trimming the most engaging parts of longer videos by analyzing viewer engagement patterns - specifically the segments users rewatch the most.
                       </Typography>
                       
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
-                        {skillChip('Python')}
-                        {skillChip('Signal Processing')}
-                        {skillChip('Data Analysis')}
-                        {skillChip('Video Processing')}
-                        {skillChip('Flask')}
+                        <Chip label="Python" size="small" sx={{ bgcolor: 'rgba(78, 204, 163, 0.1)', color: '#ffffff', m: 0.5 }} />
+                        <Chip label="Flask" size="small" sx={{ bgcolor: 'rgba(78, 204, 163, 0.1)', color: '#ffffff', m: 0.5 }} />
+                        <Chip label="JavaScript" size="small" sx={{ bgcolor: 'rgba(78, 204, 163, 0.1)', color: '#ffffff', m: 0.5 }} />
+                        <Chip label="Signal Processing" size="small" sx={{ bgcolor: 'rgba(78, 204, 163, 0.1)', color: '#ffffff', m: 0.5 }} />
+                        <Chip label="Data Analysis" size="small" sx={{ bgcolor: 'rgba(78, 204, 163, 0.1)', color: '#ffffff', m: 0.5 }} />
                       </Box>
                     </Grid>
                   </Grid>
+                  
+                  <Box sx={{ mt: 4 }}>
+                    <Typography variant="h5" color="primary" gutterBottom sx={{ fontWeight: 600 }}>
+                      Technical Implementation
+                    </Typography>
+                    
+                    <Grid container spacing={4}>
+                      <Grid item xs={12} md={6}>
+                        <Typography 
+                          variant="body1" 
+                          sx={{ 
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 1.8
+                          }}
+                        >
+                          Our data processing pipeline involved downloading video and replay rate heatmaps, applying a signal processing algorithm to find maxima within the heatmap, and generating clip boundaries to create highlight reels. We utilized Python with libraries like NumPy, Pandas, and SciPy for data analysis, MoviePy for video manipulation, and Flask for the backend server.
+                        </Typography>
+                        
+                        <Typography 
+                          variant="body1" 
+                          sx={{ 
+                            color: 'rgba(255,255,255,0.9)',
+                            lineHeight: 1.8,
+                            mt: 2
+                          }}
+                        >
+                          My contributions included assisting in the core algorithms for analyzing viewer engagement patterns, assisted in implementing the signal processing components to identify optimal clip boundaries, and collaborating on both backend and frontend development.
+                        </Typography>
+                      </Grid>
+                      
+                      <Grid item xs={12} md={6}>
+                        <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                          <Box
+                            component="img"
+                            src="/images/Histogram1.png"
+                            alt="Signal Processing Visualization"
+                            sx={{ 
+                              width: '100%', 
+                              height: 'auto', 
+                              borderRadius: '12px',
+                              boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                              border: '1px solid rgba(255,255,255,0.1)'
+                            }}
+                          />
+                        </motion.div>
+                      </Grid>
+                    </Grid>
+                  </Box>
                   
                   <Grid container spacing={3} sx={{ mt: 2 }}>
                     <Grid item xs={12} sm={6}>
                       <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                         <Box
                           component="img"
-                          src="/images/Histogram1.png"
-                          alt="Histogram 1"
+                          src="/images/Histogram2.png"
+                          alt="Clip Boundary Identification"
                           sx={{ 
                             width: '100%', 
                             height: 'auto', 
@@ -566,20 +609,36 @@ const ExperiencePage: React.FC = () => {
                       </motion.div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                        <Box
-                          component="img"
-                          src="/images/Histogram2.png"
-                          alt="Histogram 2"
-                          sx={{ 
-                            width: '100%', 
-                            height: 'auto', 
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                            border: '1px solid rgba(255,255,255,0.1)'
-                          }}
-                        />
-                      </motion.div>
+                      <Box
+                        sx={{ 
+                          mt: { xs: 2, sm: 0 }, 
+                          p: 3, 
+                          backgroundColor: 'rgba(78, 204, 163, 0.05)', 
+                          borderRadius: '8px',
+                          border: '1px solid rgba(78, 204, 163, 0.1)',
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Typography variant="h6" color="primary" gutterBottom>
+                          Data Processing Steps:
+                        </Typography>
+                        <Typography variant="body2" component="div" sx={{ color: '#ffffff' }}>
+                          <ol style={{ paddingLeft: '1.5rem' }}>
+                            <li style={{ marginBottom: '0.5rem' }}>
+                              Download the data: video and replay rate heatmap from YouTube.
+                            </li>
+                            <li style={{ marginBottom: '0.5rem' }}>
+                              Apply signal processing algorithm to identify engagement maxima and create clip boundaries.
+                            </li>
+                            <li>
+                              Extract and save video segments based on identified high-engagement points.
+                            </li>
+                          </ol>
+                        </Typography>
+                      </Box>
                     </Grid>
                   </Grid>
                   
@@ -593,21 +652,10 @@ const ExperiencePage: React.FC = () => {
                     }}
                   >
                     <Typography variant="h6" color="primary" gutterBottom>
-                      Data Processing Steps:
+                      Achievement:
                     </Typography>
-                    <Typography variant="body2" component="div" sx={{ color: '#ffffff' }}>
-                      <ol style={{ paddingLeft: '1.5rem' }}>
-                        <li style={{ marginBottom: '0.5rem' }}>
-                          Download the data: video and replay rate heatmap.
-                        </li>
-                        <li style={{ marginBottom: '0.5rem' }}>
-                          Utilize a signal processing algorithm to find the maxima of the heatmap and create bounds 
-                          that represent the beginning and ends of clips.
-                        </li>
-                        <li>
-                          Clip up the video at the timestamp of the given bounds and save it to the filesystem.
-                        </li>
-                      </ol>
+                    <Typography variant="body1" sx={{ color: '#ffffff' }}>
+                      Winning first place validated our innovative approach and technical implementation. The judges were particularly impressed by our use of data science techniques to solve a real-world content creation challenge, as well as the complete end-to-end implementation achieved during the hackathon's limited timeframe.
                     </Typography>
                   </Box>
                 </Box>
