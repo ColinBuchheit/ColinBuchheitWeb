@@ -302,7 +302,7 @@ const ContactPage: React.FC = () => {
                           Email
                         </Typography>
                         <Typography variant="body1" sx={{ color: '#ffffff' }}>
-                          contact@colinbuchheit.com
+                          colinbuchheit@gmail.com
                         </Typography>
                       </Box>
                     </Box>
@@ -321,7 +321,7 @@ const ContactPage: React.FC = () => {
                           Location
                         </Typography>
                         <Typography variant="body1" sx={{ color: '#ffffff' }}>
-                          Columbia, Missouri, USA
+                          St. Louis, Missouri, USA
                         </Typography>
                       </Box>
                     </Box>
@@ -372,22 +372,6 @@ const ContactPage: React.FC = () => {
                         <LinkedIn sx={{ color: '#ffffff', fontSize: '1.6rem' }} />
                       </IconButton>
                     </motion.div>
-                  </Box>
-                  
-                  <Box sx={{ mt: 'auto', pt: 4 }}>
-                    <Box
-                      component="img"
-                      src="/images/contact-illustration.svg"
-                      alt="Contact"
-                      sx={{ 
-                        width: '100%',
-                        maxWidth: '200px',
-                        height: 'auto',
-                        opacity: 0.8,
-                        mx: 'auto',
-                        display: 'block'
-                      }}
-                    />
                   </Box>
                 </Box>
               </Paper>

@@ -218,10 +218,10 @@ const Footer: React.FC = () => {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-                Columbia, Missouri, USA
+                St. Louis, Missouri, USA
               </Typography>
               <Link 
-                href="mailto:contact@colinbuchheit.com" 
+                href="mailto:colinbuchheit@gmail.com" 
                 underline="none"
                 sx={{ 
                   color: 'rgba(255,255,255,0.7)',
@@ -231,7 +231,7 @@ const Footer: React.FC = () => {
                   transition: 'color 0.3s'
                 }}
               >
-                contact@colinbuchheit.com
+                colinbuchheit@gmail.com
               </Link>
             </Box>
           </Grid>
