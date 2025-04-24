@@ -167,7 +167,7 @@ const ExperiencePage: React.FC = () => {
                 fontWeight: 500
               }}
             >
-              Summer 2024 - Present (Continuing Part-Time)
+              Summer 2024 - January 2025
             </Typography>
             
             <Typography 
