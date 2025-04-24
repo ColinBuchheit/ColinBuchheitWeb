@@ -93,10 +93,10 @@ const Home: React.FC = () => {
     <Box
       sx={{
         width: { xs: '220px', md: '380px' },
-        height: { xs: '260px', md: '480px' }, // Increased height for oval shape
+        height: { xs: '260px', md: '510px' }, // Increased height for oval shape
         position: 'relative',
         overflow: 'hidden',
-        borderRadius: '60% / 70%', // Creates oval shape (horizontal/vertical radius)
+        borderRadius: '75% / 80%', // Creates oval shape (horizontal/vertical radius)
         boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
       }}
     >

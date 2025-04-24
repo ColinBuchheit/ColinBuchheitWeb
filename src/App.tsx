@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { Provider } from 'react-redux';
 
@@ -20,18 +20,25 @@ import ContactPage from './pages/Contact';
 // Import global styles
 import './styles/GlobalStyles.css';
 
-const App: React.FC = () => {
-  // Scroll to top on page change
+// ScrollToTop component to handle scrolling on page change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [pathname]);
+  
+  return null;
+}
 
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app-container">
           <Router>
+            <ScrollToTop />
             <Header />
             <main className="main-content">
               <Routes>
