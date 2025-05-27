@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
                 Colin Buchheit
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', mb: 2, maxWidth: '300px' }}>
-                Information Technology student and software developer based in Columbia, Missouri.
+                AI & automation developer helping businesses streamline and scale — St. Louis, Missouri.
               </Typography>
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <motion.div whileHover={{ y: -3 }} whileTap={{ y: 0 }}>
@@ -207,7 +207,7 @@ const Footer: React.FC = () => {
                 B.S. Information Technology
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-                Expected Graduation: 2025
+                Graduated : May 2025
               </Typography>
             </Box>
           </Grid>
