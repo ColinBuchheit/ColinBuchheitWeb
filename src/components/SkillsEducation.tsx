@@ -244,16 +244,19 @@ const TechnicalSkills: React.FC = () => {
   
   // AI & Machine Learning
   const aiMachineLearning = [
-    "OpenAI API (GPT-4, GPT-4o)",
-    "Claude 3.7 Sonnet API",
-    "LangChain",
-    "Scikit-learn, TensorFlow, PyTorch",
-    "NLP & Prompt Engineering",
-    "Decision Trees, Neural Networks",
-    "Reinforcement Learning",
-    "ML Model Training & Evaluation",
-    "Multi-Agent AI Networks (CrewAI Orchestration & Pipelines)"
+    "Anthropic and OpenAI SDK integration",
+    "Azure AI Services: Cognitive Services, Language Studio, and AI Vision",
+    "LangChain for LLM workflows and memory management",
+    "Document Intelligence (OCR, key-value extraction, form recognition)",
+    "Image classification and vision model deployment",
+    "Named Entity Recognition (NER) and text analytics",
+    "Custom neural network training (classification and regression)",
+    "Scikit-learn, TensorFlow, and PyTorch frameworks",
+    "Decision Trees and Deep Neural Networks",
+    "Reinforcement Learning fundamentals",
+    "Multi-Agent AI systems (CrewAI orchestration and parallel pipelines)"
   ];
+
 
   return (
     <Box sx={{ mt: 4 }}>
@@ -496,7 +499,7 @@ const SkillsEducationPage: React.FC = () => {
                                 <School sx={{ color: '#6d9eeb', fontSize: '1.2rem' }} />
                               </ListItemIcon>
                               <ListItemText 
-                                primary="Expected Graduation: May 2025" 
+                                primary="Graduated: May 2025" 
                                 primaryTypographyProps={{ color: 'rgba(255,255,255,0.8)' }}
                               />
                             </ListItem>
@@ -505,7 +508,7 @@ const SkillsEducationPage: React.FC = () => {
                                 <VerifiedUserOutlined sx={{ color: '#6d9eeb', fontSize: '1.2rem' }} />
                               </ListItemIcon>
                               <ListItemText 
-                                primary="Overall GPA: 3.72, Major GPA: 3.94" 
+                                primary="Overall GPA: 3.78, Major GPA: 3.94" 
                                 primaryTypographyProps={{ color: 'rgba(255,255,255,0.8)' }}
                               />
                             </ListItem>
@@ -514,7 +517,7 @@ const SkillsEducationPage: React.FC = () => {
                                 <School sx={{ color: '#6d9eeb', fontSize: '1.2rem' }} />
                               </ListItemIcon>
                               <ListItemText 
-                                primary="Mizzou Engineering High Dean's List" 
+                                primary="Mizzou Engineering High Dean's List Every Semester" 
                                 primaryTypographyProps={{ color: 'rgba(255,255,255,0.8)' }}
                               />
                             </ListItem>

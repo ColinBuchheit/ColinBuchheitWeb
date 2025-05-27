@@ -50,27 +50,48 @@ const Home: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   // Define key technologies with groups
-  const technologies = [
-    { name: "C#", group: "programming" },
-    { name: "Python", group: "programming" },
-    { name: "TypeScript", group: "programming" },
-    { name: "JavaScript", group: "programming" },
-    { name: "Java", group: "programming" },
-    { name: "YAML", group: "programming" },
-    { name: "React", group: "frontend" },
-    { name: "Redux", group: "frontend" },
-    { name: "Angular", group: "frontend" },
-    { name: "Azure DevOps", group: "cloud" },
-    { name: "SQL", group: "database" },
-    { name: "MongoDB", group: "database" },
-    { name: "Firebase", group: "database" },
-    { name: "Linux", group: "os", tooltip: "Parrot Security, Kali, Ubuntu" },
-    { name: "Azure Services", group: "cloud", tooltip: "Data Factory, Data Lake Storage, Databricks, Kubernetes" },
-    { name: "Neural Networks", group: "ai" },
-    { name: "Decision Trees", group: "ai" },
-    { name: "AI Agent Networks", group: "ai" },
-    { name: "Process Automation", group: "devops" }
-  ];
+  // Define key technologies with groups
+const technologies = [
+  { name: "C#", group: "programming" },
+  { name: "Python", group: "programming" },
+  { name: "TypeScript", group: "programming" },
+  { name: "JavaScript", group: "programming" },
+  { name: "Java", group: "programming" },
+  { name: "YAML", group: "programming" },
+  
+  { name: "React", group: "frontend" },
+  { name: "Redux", group: "frontend" },
+  { name: "Angular", group: "frontend" },
+
+  { name: "SQL", group: "database" },
+  { name: "MongoDB", group: "database" },
+  { name: "Firebase", group: "database" },
+
+  { name: "Linux", group: "os", tooltip: "Parrot Security, Kali, Ubuntu" },
+
+  { 
+    name: "Azure Services", 
+    group: "cloud", 
+    tooltip: "Data Factory, Data Lake Storage, Databricks, Kubernetes" 
+  },
+  { 
+    name: "Azure AI Services", 
+    group: "ai", 
+    tooltip: "Cognitive Services, Language Studio, AI Vision, Azure OpenAI" 
+  },
+  { 
+    name: "Azure ML Studio", 
+    group: "ai", 
+    tooltip: "Train & deploy models in enterprise workflows" 
+  },
+
+  { name: "Neural Networks", group: "ai" },
+  { name: "Decision Trees", group: "ai" },
+  { name: "AI Agent Networks", group: "ai" },
+
+  { name: "Process Automation", group: "devops" }
+];
+
 
   return (
     <Box
@@ -147,7 +168,7 @@ const Home: React.FC = () => {
                   textAlign: { xs: 'center', md: 'left' }
                 }}
               >
-                Information Technology Student & Software Developer
+                Software Developer specializing in AI & Full-Stack Engineering
               </Typography>
               
               <Typography 
@@ -162,10 +183,7 @@ const Home: React.FC = () => {
                   mx: { xs: 'auto', md: 0 }
                 }}
               >
-                University of Missouri senior specializing in software development and AI,
-                with expertise in full-stack development, AI agent networks, and IT infrastructure. 
-                On track to graduate early and passionate about creating impactful technology solutions.
-              </Typography>
+Recent University of Missouri graduate with a B.S. in Information Technology, specializing in software development and AI/ML implementation. I bring hands-on experience in full-stack development, AI agent networks, machine learning model training, and enterprise IT infrastructure — all driven by a passion for building impactful, scalable technology solutions.              </Typography>
               
               <Box sx={{ 
                 display: 'flex', 
@@ -476,9 +494,7 @@ const Home: React.FC = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  Hello! I'm a senior engineering student at the University of Missouri-Columbia, 
-                  pursuing a Bachelor of Science in Information Technology with a focus on software development
-                  and artificial intelligence.
+                  Hello! I'm a recent graduate from the University of Missouri-Columbia with a B.S. in Information Technology, focusing on software development and artificial intelligence.
                 </Typography>
                 
                 <Typography 
@@ -489,9 +505,9 @@ const Home: React.FC = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  I'm actively involved in several clubs, including Mizzou Computing Association, 
-                  Mizzou Space Program, and Mizzou Student Astronomical Society, which has helped me develop 
-                  both technical and leadership skills.
+                  I have experience with Microsoft Azure AI services, including Cognitive Services, Azure OpenAI, and Language Studio. My work spans intent recognition, natural language processing, and building intelligent applications using Azure’s AI and machine learning tools. This hands-on knowledge allows me to design and deploy scalable AI-powered solutions tailored to enterprise needs.
+
+
                 </Typography>
                 
                 <Typography 
@@ -501,9 +517,7 @@ const Home: React.FC = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  On track to graduate in just three years, I've gained valuable experience in 
-                  Enterprise Software Development, AI modeling, and Information Technology. My diverse knowledge base 
-                  and specialized skills have prepared me for an exciting future in this ever-evolving industry.
+                  Graduating in just three years, I’ve developed a strong foundation in enterprise software, AI modeling, and IT systems. My diverse experience and specialized skills position me to thrive in today's evolving tech landscape.
                 </Typography>
               </Grid>
               
