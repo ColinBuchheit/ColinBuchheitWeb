@@ -508,7 +508,7 @@ const SkillsEducationPage: React.FC = () => {
                                 <VerifiedUserOutlined sx={{ color: '#6d9eeb', fontSize: '1.2rem' }} />
                               </ListItemIcon>
                               <ListItemText 
-                                primary="Overall GPA: 3.78, Major GPA: 3.94" 
+                                primary="Overall GPA: 3.78, Major GPA: 3.96" 
                                 primaryTypographyProps={{ color: 'rgba(255,255,255,0.8)' }}
                               />
                             </ListItem>
