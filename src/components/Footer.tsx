@@ -207,7 +207,6 @@ const Footer: React.FC = () => {
                 B.S. Information Technology
               </Typography>
               <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-                Graduated : May 2025
               </Typography>
             </Box>
           </Grid>

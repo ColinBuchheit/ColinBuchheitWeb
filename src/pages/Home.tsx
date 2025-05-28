@@ -50,48 +50,46 @@ const Home: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   // Define key technologies with groups
-  // Define key technologies with groups
-const technologies = [
-  { name: "C#", group: "programming" },
-  { name: "Python", group: "programming" },
-  { name: "TypeScript", group: "programming" },
-  { name: "JavaScript", group: "programming" },
-  { name: "Java", group: "programming" },
-  { name: "YAML", group: "programming" },
-  
-  { name: "React", group: "frontend" },
-  { name: "Redux", group: "frontend" },
-  { name: "Angular", group: "frontend" },
+  const technologies = [
+    { name: "C#", group: "programming" },
+    { name: "Python", group: "programming" },
+    { name: "TypeScript", group: "programming" },
+    { name: "JavaScript", group: "programming" },
+    { name: "Java", group: "programming" },
+    { name: "YAML", group: "programming" },
+    
+    { name: "React", group: "frontend" },
+    { name: "Redux", group: "frontend" },
+    { name: "Angular", group: "frontend" },
 
-  { name: "SQL", group: "database" },
-  { name: "MongoDB", group: "database" },
-  { name: "Firebase", group: "database" },
+    { name: "SQL", group: "database" },
+    { name: "MongoDB", group: "database" },
+    { name: "Firebase", group: "database" },
 
-  { name: "Linux", group: "os", tooltip: "Parrot Security, Kali, Ubuntu" },
+    { name: "Linux", group: "os", tooltip: "Parrot Security, Kali, Ubuntu" },
 
-  { 
-    name: "Azure Services", 
-    group: "cloud", 
-    tooltip: "Data Factory, Data Lake Storage, Databricks, Kubernetes" 
-  },
-  { 
-    name: "Azure AI Services", 
-    group: "ai", 
-    tooltip: "Cognitive Services, Language Studio, AI Vision, Azure OpenAI" 
-  },
-  { 
-    name: "Azure ML Studio", 
-    group: "ai", 
-    tooltip: "Train & deploy models in enterprise workflows" 
-  },
+    { 
+      name: "Azure Services", 
+      group: "cloud", 
+      tooltip: "Data Factory, Data Lake Storage, Databricks, Kubernetes" 
+    },
+    { 
+      name: "Azure AI Services", 
+      group: "ai", 
+      tooltip: "Cognitive Services, Language Studio, AI Vision, Azure OpenAI" 
+    },
+    { 
+      name: "Azure ML Studio", 
+      group: "ai", 
+      tooltip: "Train & deploy models in enterprise workflows" 
+    },
 
-  { name: "Neural Networks", group: "ai" },
-  { name: "Decision Trees", group: "ai" },
-  { name: "AI Agent Networks", group: "ai" },
+    { name: "Neural Networks", group: "ai" },
+    { name: "Decision Trees", group: "ai" },
+    { name: "AI Agent Networks", group: "ai" },
 
-  { name: "Process Automation", group: "devops" }
-];
-
+    { name: "Process Automation", group: "devops" }
+  ];
 
   return (
     <Box
@@ -106,35 +104,35 @@ const technologies = [
         <Grid container spacing={3} alignItems="center" sx={{ mb: 6 }}>
           {/* Profile Image - Now centered on mobile and on the left for larger screens */}
           <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-  >
-    <Box
-      sx={{
-        width: { xs: '220px', md: '380px' },
-        height: { xs: '260px', md: '510px' }, // Increased height for oval shape
-        position: 'relative',
-        overflow: 'hidden',
-        borderRadius: '75% / 80%', // Creates oval shape (horizontal/vertical radius)
-        boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
-      }}
-    >
-      <Box
-        component="img"
-        src="/images/Headshot.jpg"
-        alt="Colin Buchheit"
-        sx={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: '50% 60%', // Adjusted to show more of upper body/face
-        }}
-      />
-    </Box>
-  </motion.div>
-</Grid>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <Box
+                sx={{
+                  width: { xs: '220px', md: '380px' },
+                  height: { xs: '260px', md: '510px' }, // Increased height for oval shape
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: '75% / 80%', // Creates oval shape (horizontal/vertical radius)
+                  boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+                }}
+              >
+                <Box
+                  component="img"
+                  src="/images/Headshot.jpg"
+                  alt="Colin Buchheit"
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: '50% 60%', // Adjusted to show more of upper body/face
+                  }}
+                />
+              </Box>
+            </motion.div>
+          </Grid>
           
           <Grid item xs={12} md={7}>
             <motion.div
@@ -183,7 +181,8 @@ const technologies = [
                   mx: { xs: 'auto', md: 0 }
                 }}
               >
-Recent University of Missouri graduate with a B.S. in Information Technology, specializing in software development and AI/ML implementation. I bring hands-on experience in full-stack development, AI agent networks, machine learning model training, and enterprise IT infrastructure — all driven by a passion for building impactful, scalable technology solutions.              </Typography>
+                Recent University of Missouri graduate with a B.S. in Information Technology, specializing in software development and AI/ML implementation. I bring hands-on experience in full-stack development, AI agent networks, machine learning model training, and enterprise IT infrastructure — all driven by a passion for building impactful, scalable technology solutions.
+              </Typography>
               
               <Box sx={{ 
                 display: 'flex', 
@@ -237,9 +236,14 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
                       py: 1.2,
                       px: 3,
                       borderRadius: '50px',
-                      background: 'linear-gradient(90deg, #6d9eeb 0%, #4a7cc3 100%)',
+                      background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)',
                       fontWeight: 600,
-                      fontSize: '0.95rem'
+                      fontSize: '0.95rem',
+                      '&:hover': {
+                        background: 'linear-gradient(90deg, #5a8ad6 0%, #3db390 100%)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 6px 20px rgba(109, 158, 235, 0.4)',
+                      }
                     }}
                   >
                     View My Work
@@ -251,7 +255,34 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button
-                    variant="outlined"
+                    variant="contained"
+                    component={RouterLink}
+                    to="/experience#resume"
+                    size="large"
+                    sx={{
+                      py: 1.2,
+                      px: 3,
+                      borderRadius: '50px',
+                      background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)',
+                      fontWeight: 600,
+                      fontSize: '0.95rem',
+                      '&:hover': {
+                        background: 'linear-gradient(90deg, #5a8ad6 0%, #3db390 100%)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 6px 20px rgba(109, 158, 235, 0.4)',
+                      }
+                    }}
+                  >
+                    Resume
+                  </Button>
+                </motion.div>
+                
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    variant="contained"
                     component={RouterLink}
                     to="/contact"
                     size="large"
@@ -259,10 +290,14 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
                       py: 1.2,
                       px: 3,
                       borderRadius: '50px',
-                      borderColor: '#6d9eeb',
-                      color: '#ffffff',
+                      background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)',
                       fontWeight: 600,
-                      fontSize: '0.95rem'
+                      fontSize: '0.95rem',
+                      '&:hover': {
+                        background: 'linear-gradient(90deg, #5a8ad6 0%, #3db390 100%)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 6px 20px rgba(109, 158, 235, 0.4)',
+                      }
                     }}
                   >
                     Contact Me
@@ -274,177 +309,177 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
         </Grid>
         
         {/* Technologies Section with categories - Modified to align left */}
-<Box sx={{ mb: 6 }}>
-  <Typography 
-    variant="h6" 
-    color="textSecondary" 
-    gutterBottom
-    sx={{ textAlign: { xs: 'center', md: 'left' }, mb: 1 }}
-  >
-    Key Technologies
-  </Typography>
-  
-  <Typography 
-    variant="body2" 
-    sx={{ 
-      textAlign: { xs: 'center', md: 'left' }, 
-      mb: 3, 
-      color: 'rgba(255,255,255,0.6)',
-      maxWidth: '700px',
-      mx: { xs: 'auto', md: 0 }
-    }}
-  >
-    My expertise spans programming languages, frameworks, cloud platforms, and AI development
-  </Typography>
-  
-  {/* Programming Languages Category */}
-  <Box sx={{ mb: 4 }}>
-    <Typography 
-      variant="subtitle1" 
-      sx={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        color: '#6d9eeb', 
-        mb: 2 
-      }}
-    >
-      <CodeIcon sx={{ mr: 1 }} /> Programming & Languages
-    </Typography>
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        gap: 1.5
-      }}
-    >
-      {technologies
-        .filter(tech => tech.group === 'programming')
-        .map((tech, index) => (
-        <motion.div
-          key={tech.name}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 * index }}
-        >
-          <Chip
-            label={tech.name}
-            sx={{
-              backgroundColor: 'rgba(109, 158, 235, 0.15)',
-              color: '#ffffff',
-              fontWeight: 500,
-              fontSize: '0.9rem',
-              py: 2.5,
-              '&:hover': {
-                backgroundColor: 'rgba(109, 158, 235, 0.25)',
-              }
+        <Box sx={{ mb: 6 }}>
+          <Typography 
+            variant="h6" 
+            color="textSecondary" 
+            gutterBottom
+            sx={{ textAlign: { xs: 'center', md: 'left' }, mb: 1 }}
+          >
+            Key Technologies
+          </Typography>
+          
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              textAlign: { xs: 'center', md: 'left' }, 
+              mb: 3, 
+              color: 'rgba(255,255,255,0.6)',
+              maxWidth: '700px',
+              mx: { xs: 'auto', md: 0 }
             }}
-          />
-        </motion.div>
-      ))}
-    </Box>
-  </Box>
-  
-  {/* Frontend & Cloud Category */}
-  <Box sx={{ mb: 4 }}>
-    <Typography 
-      variant="subtitle1" 
-      sx={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        color: '#4ecca3', 
-        mb: 2 
-      }}
-    >
-      <StorageIcon sx={{ mr: 1 }} /> Frameworks & Cloud Platforms
-    </Typography>
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        gap: 1.5
-      }}
-    >
-      {technologies
-        .filter(tech => tech.group === 'frontend' || tech.group === 'cloud' || tech.group === 'database' || tech.group === 'os')
-        .map((tech, index) => (
-        <motion.div
-          key={tech.name}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 * index }}
-        >
-          <Chip
-            label={tech.name}
-            title={tech.tooltip}
-            sx={{
-              backgroundColor: 'rgba(78, 204, 163, 0.15)',
-              color: '#ffffff',
-              fontWeight: 500,
-              fontSize: '0.9rem',
-              py: 2.5,
-              '&:hover': {
-                backgroundColor: 'rgba(78, 204, 163, 0.25)',
-              }
-            }}
-          />
-        </motion.div>
-      ))}
-    </Box>
-  </Box>
-  
-  {/* AI & Automation Category */}
-  <Box>
-    <Typography 
-      variant="subtitle1" 
-      sx={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        color: '#6d9eeb', 
-        mb: 2 
-      }}
-    >
-      <MemoryIcon sx={{ mr: 1 }} /> AI & Automation
-    </Typography>
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        flexWrap: 'wrap', 
-        justifyContent: { xs: 'center', md: 'flex-start' },
-        gap: 1.5
-      }}
-    >
-      {technologies
-        .filter(tech => tech.group === 'ai' || tech.group === 'devops')
-        .map((tech, index) => (
-        <motion.div
-          key={tech.name}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 * index }}
-        >
-          <Chip
-            label={tech.name}
-            sx={{
-              backgroundColor: 'rgba(109, 158, 235, 0.15)',
-              color: '#ffffff',
-              fontWeight: 500,
-              fontSize: '0.9rem',
-              py: 2.5,
-              '&:hover': {
-                backgroundColor: 'rgba(109, 158, 235, 0.25)',
-              }
-            }}
-          />
-        </motion.div>
-      ))}
-    </Box>
-  </Box>
-</Box>
+          >
+            My expertise spans programming languages, frameworks, cloud platforms, and AI development
+          </Typography>
+          
+          {/* Programming Languages Category */}
+          <Box sx={{ mb: 4 }}>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                color: '#6d9eeb', 
+                mb: 2 
+              }}
+            >
+              <CodeIcon sx={{ mr: 1 }} /> Programming & Languages
+            </Typography>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                gap: 1.5
+              }}
+            >
+              {technologies
+                .filter(tech => tech.group === 'programming')
+                .map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <Chip
+                    label={tech.name}
+                    sx={{
+                      backgroundColor: 'rgba(109, 158, 235, 0.15)',
+                      color: '#ffffff',
+                      fontWeight: 500,
+                      fontSize: '0.9rem',
+                      py: 2.5,
+                      '&:hover': {
+                        backgroundColor: 'rgba(109, 158, 235, 0.25)',
+                      }
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </Box>
+          </Box>
+          
+          {/* Frontend & Cloud Category */}
+          <Box sx={{ mb: 4 }}>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                color: '#4ecca3', 
+                mb: 2 
+              }}
+            >
+              <StorageIcon sx={{ mr: 1 }} /> Frameworks & Cloud Platforms
+            </Typography>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                gap: 1.5
+              }}
+            >
+              {technologies
+                .filter(tech => tech.group === 'frontend' || tech.group === 'cloud' || tech.group === 'database' || tech.group === 'os')
+                .map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <Chip
+                    label={tech.name}
+                    title={tech.tooltip}
+                    sx={{
+                      backgroundColor: 'rgba(78, 204, 163, 0.15)',
+                      color: '#ffffff',
+                      fontWeight: 500,
+                      fontSize: '0.9rem',
+                      py: 2.5,
+                      '&:hover': {
+                        backgroundColor: 'rgba(78, 204, 163, 0.25)',
+                      }
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </Box>
+          </Box>
+          
+          {/* AI & Automation Category */}
+          <Box>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                color: '#6d9eeb', 
+                mb: 2 
+              }}
+            >
+              <MemoryIcon sx={{ mr: 1 }} /> AI & Automation
+            </Typography>
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexWrap: 'wrap', 
+                justifyContent: { xs: 'center', md: 'flex-start' },
+                gap: 1.5
+              }}
+            >
+              {technologies
+                .filter(tech => tech.group === 'ai' || tech.group === 'devops')
+                .map((tech, index) => (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <Chip
+                    label={tech.name}
+                    sx={{
+                      backgroundColor: 'rgba(109, 158, 235, 0.15)',
+                      color: '#ffffff',
+                      fontWeight: 500,
+                      fontSize: '0.9rem',
+                      py: 2.5,
+                      '&:hover': {
+                        backgroundColor: 'rgba(109, 158, 235, 0.25)',
+                      }
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </Box>
+          </Box>
+        </Box>
         
         {/* About Me Section */}
         <motion.div
@@ -505,9 +540,7 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
                     lineHeight: 1.8
                   }}
                 >
-                  I have experience with Microsoft Azure AI services, including Cognitive Services, Azure OpenAI, and Language Studio. My work spans intent recognition, natural language processing, and building intelligent applications using Azure’s AI and machine learning tools. This hands-on knowledge allows me to design and deploy scalable AI-powered solutions tailored to enterprise needs.
-
-
+                  I have experience with Microsoft Azure AI services, including Cognitive Services, Azure OpenAI, and Language Studio. My work spans intent recognition, natural language processing, and building intelligent applications using Azure's AI and machine learning tools. This hands-on knowledge allows me to design and deploy scalable AI-powered solutions tailored to enterprise needs.
                 </Typography>
                 
                 <Typography 
@@ -517,7 +550,7 @@ Recent University of Missouri graduate with a B.S. in Information Technology, sp
                     lineHeight: 1.8
                   }}
                 >
-                  Graduating in just three years, I’ve developed a strong foundation in enterprise software, AI modeling, and IT systems. My diverse experience and specialized skills position me to thrive in today's evolving tech landscape.
+                  Graduating in just three years, I've developed a strong foundation in enterprise software, AI modeling, and IT systems. My diverse experience and specialized skills position me to thrive in today's evolving tech landscape.
                 </Typography>
               </Grid>
               

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { 
   Container, 
   Grid, 
@@ -34,7 +34,7 @@ const fadeIn = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1, 
-    transition: { duration: 0.6 }
+    transition: { duration: 0.2 }
   }
 };
 
@@ -56,24 +56,27 @@ const container = {
     }
   }
 };
+
 const SecureResumeSection: React.FC = () => {
   const [isBlurred, setIsBlurred] = useState(true);
-  const [showWarning, setShowWarning] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  useEffect(() => {
+  // Check if there's a hash in the URL and scroll to it
+  if (window.location.hash) {
+    const element = document.getElementById(window.location.hash.substring(1));
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }, 100); // Small delay to ensure page is rendered
+    }
+  }
+}, []);
 
   const handleViewToggle = () => {
-    if (isBlurred) {
-      setShowWarning(true);
-    } else {
-      setIsBlurred(true);
-    }
+    setIsBlurred(!isBlurred);
   };
-
-  const handleConfirmView = () => {
-    setIsBlurred(false);
-    setShowWarning(false);
-  };
+  
 
   const handleDownload = () => {
     // Create a link to download the PDF
@@ -148,92 +151,15 @@ const SecureResumeSection: React.FC = () => {
           </Box>
         </Box>
 
-        {/* Security Notice */}
+        {/* Security Notice - Only show when blurred */}
         {isBlurred && (
           <Box sx={{ mb: 3, p: 2, backgroundColor: 'rgba(109, 158, 235, 0.1)', borderRadius: '8px' }}>
             <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
               <SecurityIcon sx={{ fontSize: '1rem', mr: 1, verticalAlign: 'middle' }} />
-              Resume content is blurred for security. Click "View Resume" to display the content.
+              Resume content is blurred for privacy. Click "View Resume" to display the content.
             </Typography>
           </Box>
         )}
-
-        {/* Warning Dialog */}
-        <AnimatePresence>
-          {showWarning && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Box 
-                sx={{ 
-                  position: 'fixed',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 1300,
-                  width: '90%',
-                  maxWidth: '400px'
-                }}
-              >
-                <Paper 
-                  sx={{ 
-                    p: 3,
-                    backgroundColor: '#1e1e1e',
-                    border: '1px solid rgba(255,255,255,0.1)'
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <WarningIcon sx={{ color: '#ff9800', mr: 1 }} />
-                    <Typography variant="h6" color="primary">
-                      Privacy Notice
-                    </Typography>
-                  </Box>
-                  
-                  <Typography variant="body2" sx={{ mb: 3, color: 'rgba(255,255,255,0.9)' }}>
-                    Please be aware that viewing the resume will make the content accessible. 
-                    For enhanced privacy, consider downloading the PDF version instead.
-                  </Typography>
-                  
-                  <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
-                    <Button 
-                      variant="outlined" 
-                      onClick={() => setShowWarning(false)}
-                      sx={{ borderColor: '#666', color: '#999' }}
-                    >
-                      Cancel
-                    </Button>
-                    <Button 
-                      variant="contained" 
-                      onClick={handleConfirmView}
-                      sx={{ 
-                        background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
-                      }}
-                    >
-                      Continue
-                    </Button>
-                  </Box>
-                </Paper>
-              </Box>
-              
-              {/* Backdrop */}
-              <Box
-                sx={{
-                  position: 'fixed',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundColor: 'rgba(0,0,0,0.8)',
-                  zIndex: 1299
-                }}
-                onClick={() => setShowWarning(false)}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Resume Content Container */}
         <Box
@@ -242,10 +168,10 @@ const SecureResumeSection: React.FC = () => {
             backgroundColor: 'rgba(255,255,255,0.02)',
             borderRadius: '12px',
             overflow: 'hidden',
-            minHeight: isMobile ? '600px' : '800px'
+            minHeight: isMobile ? '700px' : '900px'
           }}
         >
-          {/* Overlay to prevent selection when blurred */}
+          {/* Overlay to prevent interaction when blurred */}
           {isBlurred && (
             <Box
               sx={{
@@ -261,176 +187,188 @@ const SecureResumeSection: React.FC = () => {
             />
           )}
 
-          {/* Resume Content */}
+          {/* PDF Embed or Blurred Content */}
           <Box
             sx={{
               filter: isBlurred ? 'blur(8px)' : 'none',
               transition: 'filter 0.3s ease',
               userSelect: isBlurred ? 'none' : 'auto',
-              p: { xs: 2, md: 4 },
-              backgroundColor: '#ffffff',
-              color: '#000000',
               minHeight: '100%',
-              fontFamily: 'Arial, sans-serif'
+              width: '100%'
             }}
           >
-            {/* Resume Header */}
-            <Box sx={{ textAlign: 'center', mb: 3 }}>
-              <Typography variant="h3" sx={{ fontWeight: 700, color: '#1a1a1a', mb: 1, fontSize: { xs: '2rem', md: '3rem' } }}>
-                Colin Buchheit
-              </Typography>
-              <Typography variant="h6" sx={{ color: '#555', mb: 1, fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                Software Developer | AI & Full-Stack Engineering
-              </Typography>
-              <Typography variant="body2" sx={{ color: '#666' }}>
-                St. Louis, MO | colinbuchheit@gmail.com | linkedin.com/in/colin-buchheit | github.com/ColinBuchheit
-              </Typography>
-            </Box>
-
-            {/* Professional Summary */}
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
-                Professional Summary
-              </Typography>
-              <Typography variant="body1" sx={{ color: '#444', lineHeight: 1.6 }}>
-                Recent University of Missouri graduate with B.S. in Information Technology, specializing in software development 
-                and AI/ML implementation. Experienced in full-stack development, AI agent networks, machine learning model training, 
-                and enterprise IT infrastructure. Proven track record of delivering innovative solutions, including first-place 
-                hackathon win and featured capstone project.
-              </Typography>
-            </Box>
-
-            {/* Technical Skills */}
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
-                Technical Skills
-              </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>Languages:</strong> C#, Python, Java, JavaScript, TypeScript, SQL, YAML
+            {!isBlurred ? (
+              // Show actual PDF when not blurred
+              <iframe
+                src="/Colin_Buchheit_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=FitH"
+                width="100%"
+                height={isMobile ? "700px" : "900px"}
+                style={{
+                  border: 'none',
+                  borderRadius: '12px',
+                  backgroundColor: '#ffffff'
+                }}
+                title="Colin Buchheit Resume"
+              />
+            ) : (
+              // Show placeholder content when blurred - sized like actual PDF
+              <Box
+                sx={{
+                  maxWidth: '8.5in', // Standard letter size width
+                  mx: 'auto', // Center the document
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  fontFamily: 'Arial, sans-serif',
+                  fontSize: '11px', // PDF-like font size
+                  lineHeight: 1.4,
+                  p: { xs: 2, md: 3 }, // Realistic PDF margins
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)', // Paper shadow effect
+                  minHeight: '11in', // Standard letter height
+                  position: 'relative'
+                }}
+              >
+              {/* Fake Resume Header */}
+                <Box sx={{ textAlign: 'center', mb: 2 }}>
+                  <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#1a1a1a', mb: 0.5 }}>
+                    Colin Buchheit
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>Frameworks:</strong> React, Node.js, .NET, Express.js, FastAPI, Redux
+                  <Typography sx={{ fontSize: '14px', color: '#555', mb: 0.5 }}>
+                    Software Developer | Full-Stack Engineer
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>Cloud/DevOps:</strong> Microsoft Azure (Pipelines, Blob Storage, Kubernetes), Docker, CI/CD
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>AI/ML:</strong> Azure AI Services, OpenAI/Anthropic SDKs, LangChain, TensorFlow, PyTorch
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>Databases:</strong> PostgreSQL, MongoDB, MySQL, SQL Server, Firebase
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    <strong>Tools:</strong> Git/GitHub, Linux, Visual Studio, VS Code
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-
-            {/* Experience */}
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
-                Professional Experience
-              </Typography>
-              
-              <Box sx={{ mb: 2 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
-                    Enterprise Software Developer Intern
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#555', fontStyle: 'italic' }}>
-                    Summer 2024 - January 2025
+                  <Typography sx={{ fontSize: '10px', color: '#666' }}>
+                    Sample City, ST | example@email.com | linkedin.com/in/sample | github.com/sample
                   </Typography>
                 </Box>
-                <Typography variant="body2" sx={{ color: '#555', fontWeight: 500 }}>
-                  MX Holdings | St. Louis, MO
-                </Typography>
-                <Box sx={{ mt: 1 }}>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    • Developed AI-powered inventory management system with ML intent recognition and GPT integration
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    • Built internal diagnostics dashboard using React, Redux, and C# APIs for error monitoring
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    • Created market pricing visualization application with Node.js and interactive charting
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#444' }}>
-                    • Implemented CI/CD pipelines using YAML and Azure DevOps for automated deployments
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
 
-            {/* Education */}
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
-                Education
-              </Typography>
-              
-              <Box sx={{ mb: 2 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
-                    University of Missouri, Columbia
+                {/* Fake Professional Summary */}
+                <Box sx={{ mb: 2 }}>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
+                    Professional Summary
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#555' }}>
-                    May 2025
+                  <Typography sx={{ fontSize: '11px', color: '#444', lineHeight: 1.4 }}>
+                    Experienced software developer with expertise in modern web technologies and cloud platforms. 
+                    Strong background in building scalable applications, implementing best practices, and collaborating 
+                    with cross-functional teams. Passionate about creating efficient solutions and staying current with 
+                    emerging technologies in the software development landscape.
                   </Typography>
                 </Box>
-                <Typography variant="body2" sx={{ color: '#555' }}>
-                  Bachelor of Science in Information Technology
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  GPA: 3.78 Overall, 3.94 Major | Dean's List All Semesters
-                </Typography>
-              </Box>
-              
-              <Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
-                    Saint Louis Community College
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#555' }}>
-                    May 2023
-                  </Typography>
-                </Box>
-                <Typography variant="body2" sx={{ color: '#555' }}>
-                  Associate Degree in Information Technology
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  Phi Theta Kappa Honors Fraternity
-                </Typography>
-              </Box>
-            </Box>
 
-            {/* Projects */}
-            <Box>
-              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
-                Notable Projects
-              </Typography>
-              
-              <Box sx={{ mb: 1 }}>
-                <Typography variant="body2" sx={{ color: '#444' }}>
-                  <strong>DiscordAI Assistant</strong> - Featured Mizzou IT Capstone (Fall 2024)
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#666', pl: 2 }}>
-                  Developed context-aware AI Discord bot with Docker microservices and MongoDB persistence
-                </Typography>
-</Box>
-              
-              <Box>
-                <Typography variant="body2" sx={{ color: '#444' }}>
-                  <strong>Rapid Reels</strong> - TigerHacks 2023 First Place Winner
-                </Typography>
-                <Typography variant="body2" sx={{ color: '#666', pl: 2 }}>
-                  Created automated video content extraction tool using Python signal processing and Flask
-                </Typography>
+                {/* Fake Technical Skills */}
+                <Box sx={{ mb: 2 }}>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
+                    Technical Skills
+                  </Typography>
+                  <Grid container spacing={1}>
+                    <Grid item xs={12} md={6}>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Languages:</strong> JavaScript, Python, Java, C++, HTML, CSS
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Frameworks:</strong> React, Angular, Vue.js, Node.js, Express
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Cloud/DevOps:</strong> AWS, Google Cloud, Docker, Kubernetes
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, Redis
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Tools:</strong> Git, Jenkins, Jira, VS Code, IntelliJ
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
+                        <strong>Other:</strong> REST APIs, GraphQL, Microservices, Agile
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+
+                {/* Fake Experience */}
+                <Box sx={{ mb: 2 }}>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
+                    Professional Experience
+                  </Typography>
+                  
+                  <Box sx={{ mb: 1.5 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                      <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#1a1a1a' }}>
+                        Senior Software Developer
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#555', fontStyle: 'italic' }}>
+                        2022 - Present
+                      </Typography>
+                    </Box>
+                    <Typography sx={{ fontSize: '11px', color: '#555', fontWeight: 500 }}>
+                      Tech Solutions Inc. | Sample City, ST
+                    </Typography>
+                    <Box sx={{ mt: 0.5 }}>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
+                        • Developed and maintained web applications using modern JavaScript frameworks
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
+                        • Collaborated with product teams to implement new features and improvements
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
+                        • Optimized application performance and implemented best practices
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#444' }}>
+                        • Mentored junior developers and conducted code reviews
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* Fake Education */}
+                <Box sx={{ mb: 2 }}>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
+                    Education
+                  </Typography>
+                  
+                  <Box sx={{ mb: 1 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                      <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#1a1a1a' }}>
+                        State University
+                      </Typography>
+                      <Typography sx={{ fontSize: '10px', color: '#555' }}>
+                        2020
+                      </Typography>
+                    </Box>
+                    <Typography sx={{ fontSize: '11px', color: '#555' }}>
+                      Bachelor of Science in Computer Science
+                    </Typography>
+                    <Typography sx={{ fontSize: '10px', color: '#666' }}>
+                      GPA: 3.8 | Dean's List | Relevant Coursework: Data Structures, Algorithms
+                    </Typography>
+                  </Box>
+                </Box>
+
+                {/* Fake Projects */}
+                <Box>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
+                    Notable Projects
+                  </Typography>
+                  
+                  <Box sx={{ mb: 0.8 }}>
+                    <Typography sx={{ fontSize: '11px', color: '#444' }}>
+                      <strong>E-Commerce Platform</strong> - Personal Project (2023)
+                    </Typography>
+                    <Typography sx={{ fontSize: '10px', color: '#666', pl: 1 }}>
+                      Built full-stack web application with user authentication and payment processing
+                    </Typography>
+                  </Box>
+                  
+                  <Box>
+                    <Typography sx={{ fontSize: '11px', color: '#444' }}>
+                      <strong>Task Management App</strong> - Hackathon Winner (2022)
+                    </Typography>
+                    <Typography sx={{ fontSize: '10px', color: '#666', pl: 1 }}>
+                      Developed mobile-first application for team collaboration and project tracking
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         </Box>
       </Box>
@@ -1340,9 +1278,10 @@ const ExperiencePage: React.FC = () => {
             </motion.div>
           </Grid>
 
-          {/* Resume Section */}
+      {/* Resume Section */}
           <Grid item xs={12}>
             <motion.div
+              id="resume"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
