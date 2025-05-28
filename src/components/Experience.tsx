@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Container, 
   Grid, 
@@ -9,7 +9,8 @@ import {
   Divider,
   Chip,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Button
 } from '@mui/material';
 import { 
   WorkOutline as WorkIcon,
@@ -19,9 +20,14 @@ import {
   DesignServices as DesignIcon,
   Timeline as TimelineIcon,
   Build as BuildIcon,
-  Memory as MemoryIcon
+  Memory as MemoryIcon,
+  Download as DownloadIcon,
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+  Security as SecurityIcon,
+  Warning as WarningIcon
 } from '@mui/icons-material';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Animation variants
 const fadeIn = {
@@ -50,7 +56,387 @@ const container = {
     }
   }
 };
+const SecureResumeSection: React.FC = () => {
+  const [isBlurred, setIsBlurred] = useState(true);
+  const [showWarning, setShowWarning] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
+  const handleViewToggle = () => {
+    if (isBlurred) {
+      setShowWarning(true);
+    } else {
+      setIsBlurred(true);
+    }
+  };
+
+  const handleConfirmView = () => {
+    setIsBlurred(false);
+    setShowWarning(false);
+  };
+
+  const handleDownload = () => {
+    // Create a link to download the PDF
+    const link = document.createElement('a');
+    link.href = '/Colin_Buchheit_Resume.pdf'; // Place your PDF in the public folder
+    link.download = 'Colin_Buchheit_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <Paper 
+      elevation={0}
+      sx={{ 
+        borderRadius: '16px',
+        overflow: 'hidden',
+        background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+        border: '1px solid rgba(255,255,255,0.05)',
+        position: 'relative'
+      }}
+    >
+      {/* Header with gradient */}
+      <Box 
+        sx={{ 
+          p: 0.5, 
+          background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
+        }}
+      />
+      
+      <Box sx={{ p: { xs: 3, md: 4 } }}>
+        {/* Resume Header */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <SecurityIcon sx={{ color: '#6d9eeb', mr: 2, fontSize: '2rem' }} />
+            <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
+              Resume
+            </Typography>
+          </Box>
+          
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button
+              variant="outlined"
+              startIcon={isBlurred ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              onClick={handleViewToggle}
+              sx={{
+                borderColor: '#6d9eeb',
+                color: '#6d9eeb',
+                '&:hover': {
+                  borderColor: '#4a7cc3',
+                  backgroundColor: 'rgba(109, 158, 235, 0.1)'
+                }
+              }}
+            >
+              {isBlurred ? 'View Resume' : 'Hide Resume'}
+            </Button>
+            
+            <Button
+              variant="contained"
+              startIcon={<DownloadIcon />}
+              onClick={handleDownload}
+              sx={{
+                background: 'linear-gradient(90deg, #6d9eeb 0%, #4a7cc3 100%)',
+                '&:hover': {
+                  background: 'linear-gradient(90deg, #5a8ad6 0%, #3b6db4 100%)',
+                }
+              }}
+            >
+              Download PDF
+            </Button>
+          </Box>
+        </Box>
+
+        {/* Security Notice */}
+        {isBlurred && (
+          <Box sx={{ mb: 3, p: 2, backgroundColor: 'rgba(109, 158, 235, 0.1)', borderRadius: '8px' }}>
+            <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+              <SecurityIcon sx={{ fontSize: '1rem', mr: 1, verticalAlign: 'middle' }} />
+              Resume content is blurred for security. Click "View Resume" to display the content.
+            </Typography>
+          </Box>
+        )}
+
+        {/* Warning Dialog */}
+        <AnimatePresence>
+          {showWarning && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Box 
+                sx={{ 
+                  position: 'fixed',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 1300,
+                  width: '90%',
+                  maxWidth: '400px'
+                }}
+              >
+                <Paper 
+                  sx={{ 
+                    p: 3,
+                    backgroundColor: '#1e1e1e',
+                    border: '1px solid rgba(255,255,255,0.1)'
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <WarningIcon sx={{ color: '#ff9800', mr: 1 }} />
+                    <Typography variant="h6" color="primary">
+                      Privacy Notice
+                    </Typography>
+                  </Box>
+                  
+                  <Typography variant="body2" sx={{ mb: 3, color: 'rgba(255,255,255,0.9)' }}>
+                    Please be aware that viewing the resume will make the content accessible. 
+                    For enhanced privacy, consider downloading the PDF version instead.
+                  </Typography>
+                  
+                  <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+                    <Button 
+                      variant="outlined" 
+                      onClick={() => setShowWarning(false)}
+                      sx={{ borderColor: '#666', color: '#999' }}
+                    >
+                      Cancel
+                    </Button>
+                    <Button 
+                      variant="contained" 
+                      onClick={handleConfirmView}
+                      sx={{ 
+                        background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
+                      }}
+                    >
+                      Continue
+                    </Button>
+                  </Box>
+                </Paper>
+              </Box>
+              
+              {/* Backdrop */}
+              <Box
+                sx={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  backgroundColor: 'rgba(0,0,0,0.8)',
+                  zIndex: 1299
+                }}
+                onClick={() => setShowWarning(false)}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Resume Content Container */}
+        <Box
+          sx={{
+            position: 'relative',
+            backgroundColor: 'rgba(255,255,255,0.02)',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            minHeight: isMobile ? '600px' : '800px'
+          }}
+        >
+          {/* Overlay to prevent selection when blurred */}
+          {isBlurred && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 1,
+                cursor: 'not-allowed'
+              }}
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          )}
+
+          {/* Resume Content */}
+          <Box
+            sx={{
+              filter: isBlurred ? 'blur(8px)' : 'none',
+              transition: 'filter 0.3s ease',
+              userSelect: isBlurred ? 'none' : 'auto',
+              p: { xs: 2, md: 4 },
+              backgroundColor: '#ffffff',
+              color: '#000000',
+              minHeight: '100%',
+              fontFamily: 'Arial, sans-serif'
+            }}
+          >
+            {/* Resume Header */}
+            <Box sx={{ textAlign: 'center', mb: 3 }}>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: '#1a1a1a', mb: 1, fontSize: { xs: '2rem', md: '3rem' } }}>
+                Colin Buchheit
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#555', mb: 1, fontSize: { xs: '1rem', md: '1.25rem' } }}>
+                Software Developer | AI & Full-Stack Engineering
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#666' }}>
+                St. Louis, MO | colinbuchheit@gmail.com | linkedin.com/in/colin-buchheit | github.com/ColinBuchheit
+              </Typography>
+            </Box>
+
+            {/* Professional Summary */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
+                Professional Summary
+              </Typography>
+              <Typography variant="body1" sx={{ color: '#444', lineHeight: 1.6 }}>
+                Recent University of Missouri graduate with B.S. in Information Technology, specializing in software development 
+                and AI/ML implementation. Experienced in full-stack development, AI agent networks, machine learning model training, 
+                and enterprise IT infrastructure. Proven track record of delivering innovative solutions, including first-place 
+                hackathon win and featured capstone project.
+              </Typography>
+            </Box>
+
+            {/* Technical Skills */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
+                Technical Skills
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>Languages:</strong> C#, Python, Java, JavaScript, TypeScript, SQL, YAML
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>Frameworks:</strong> React, Node.js, .NET, Express.js, FastAPI, Redux
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>Cloud/DevOps:</strong> Microsoft Azure (Pipelines, Blob Storage, Kubernetes), Docker, CI/CD
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>AI/ML:</strong> Azure AI Services, OpenAI/Anthropic SDKs, LangChain, TensorFlow, PyTorch
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>Databases:</strong> PostgreSQL, MongoDB, MySQL, SQL Server, Firebase
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    <strong>Tools:</strong> Git/GitHub, Linux, Visual Studio, VS Code
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+
+            {/* Experience */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
+                Professional Experience
+              </Typography>
+              
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
+                    Enterprise Software Developer Intern
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#555', fontStyle: 'italic' }}>
+                    Summer 2024 - January 2025
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ color: '#555', fontWeight: 500 }}>
+                  MX Holdings | St. Louis, MO
+                </Typography>
+                <Box sx={{ mt: 1 }}>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    • Developed AI-powered inventory management system with ML intent recognition and GPT integration
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    • Built internal diagnostics dashboard using React, Redux, and C# APIs for error monitoring
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    • Created market pricing visualization application with Node.js and interactive charting
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#444' }}>
+                    • Implemented CI/CD pipelines using YAML and Azure DevOps for automated deployments
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Education */}
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
+                Education
+              </Typography>
+              
+              <Box sx={{ mb: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
+                    University of Missouri, Columbia
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#555' }}>
+                    May 2025
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ color: '#555' }}>
+                  Bachelor of Science in Information Technology
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666' }}>
+                  GPA: 3.78 Overall, 3.94 Major | Dean's List All Semesters
+                </Typography>
+              </Box>
+              
+              <Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <Typography variant="h6" sx={{ fontWeight: 600, color: '#1a1a1a' }}>
+                    Saint Louis Community College
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: '#555' }}>
+                    May 2023
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ color: '#555' }}>
+                  Associate Degree in Information Technology
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666' }}>
+                  Phi Theta Kappa Honors Fraternity
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Projects */}
+            <Box>
+              <Typography variant="h5" sx={{ fontWeight: 600, color: '#2c3e50', mb: 1, borderBottom: '2px solid #3498db', pb: 0.5 }}>
+                Notable Projects
+              </Typography>
+              
+              <Box sx={{ mb: 1 }}>
+                <Typography variant="body2" sx={{ color: '#444' }}>
+                  <strong>DiscordAI Assistant</strong> - Featured Mizzou IT Capstone (Fall 2024)
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666', pl: 2 }}>
+                  Developed context-aware AI Discord bot with Docker microservices and MongoDB persistence
+                </Typography>
+</Box>
+              
+              <Box>
+                <Typography variant="body2" sx={{ color: '#444' }}>
+                  <strong>Rapid Reels</strong> - TigerHacks 2023 First Place Winner
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666', pl: 2 }}>
+                  Created automated video content extraction tool using Python signal processing and Flask
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Paper>
+  );
+};
 const ExperiencePage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -951,6 +1337,18 @@ const ExperiencePage: React.FC = () => {
                   </Box>
                 </Box>
               </Paper>
+            </motion.div>
+          </Grid>
+
+          {/* Resume Section */}
+          <Grid item xs={12}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideInRight}
+            >
+              <SecureResumeSection />
             </motion.div>
           </Grid>
         </Grid>
