@@ -10,7 +10,10 @@ import {
   Chip,
   useTheme,
   useMediaQuery,
-  Button
+  Button,
+  Collapse,
+  Alert,
+  Stack
 } from '@mui/material';
 import { 
   WorkOutline as WorkIcon,
@@ -25,7 +28,9 @@ import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
   Security as SecurityIcon,
-  Warning as WarningIcon
+  Warning as WarningIcon,
+  OpenInNew as OpenInNewIcon
+
 } from '@mui/icons-material';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -61,31 +66,34 @@ const SecureResumeSection: React.FC = () => {
   const [isBlurred, setIsBlurred] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   useEffect(() => {
-  // Check if there's a hash in the URL and scroll to it
-  if (window.location.hash) {
-    const element = document.getElementById(window.location.hash.substring(1));
-    if (element) {
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }, 100); // Small delay to ensure page is rendered
+    // Check if there's a hash in the URL and scroll to it
+    if (window.location.hash) {
+      const element = document.getElementById(window.location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     }
-  }
-}, []);
+  }, []);
 
   const handleViewToggle = () => {
     setIsBlurred(!isBlurred);
   };
-  
 
   const handleDownload = () => {
-    // Create a link to download the PDF
     const link = document.createElement('a');
-    link.href = '/Colin_Buchheit_Resume.pdf'; // Place your PDF in the public folder
+    link.href = '/Colin_Buchheit_Resume.pdf';
     link.download = 'Colin_Buchheit_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleOpenInNewTab = () => {
+    window.open('/Colin_Buchheit_Resume.pdf', '_blank');
   };
 
   return (
@@ -110,22 +118,42 @@ const SecureResumeSection: React.FC = () => {
       
       <Box sx={{ p: { xs: 3, md: 4 } }}>
         {/* Resume Header */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' }, 
+          justifyContent: 'space-between', 
+          gap: 2,
+          mb: 3 
+        }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <SecurityIcon sx={{ color: '#6d9eeb', mr: 2, fontSize: '2rem' }} />
-            <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
+            <Typography variant="h4" color="primary" sx={{ 
+              fontWeight: 600,
+              fontSize: { xs: '1.75rem', md: '2rem' }
+            }}>
               Resume
             </Typography>
           </Box>
           
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          {/* Action Buttons */}
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 2,
+            width: { xs: '100%', sm: 'auto' }
+          }}>
+            {/* Toggle View Button for all screen sizes */}
             <Button
               variant="outlined"
               startIcon={isBlurred ? <VisibilityIcon /> : <VisibilityOffIcon />}
               onClick={handleViewToggle}
+              fullWidth={isMobile}
               sx={{
                 borderColor: '#6d9eeb',
                 color: '#6d9eeb',
+                py: 1.2,
+                minWidth: '140px',
                 '&:hover': {
                   borderColor: '#4a7cc3',
                   backgroundColor: 'rgba(109, 158, 235, 0.1)'
@@ -135,12 +163,36 @@ const SecureResumeSection: React.FC = () => {
               {isBlurred ? 'View Resume' : 'Hide Resume'}
             </Button>
             
+            {/* Open in New Tab - Additional option for mobile */}
+            {isMobile && (
+              <Button
+                variant="outlined"
+                startIcon={<OpenInNewIcon />}
+                onClick={handleOpenInNewTab}
+                fullWidth
+                sx={{
+                  borderColor: '#4ecca3',
+                  color: '#4ecca3',
+                  py: 1.2,
+                  '&:hover': {
+                    borderColor: '#3c9d7c',
+                    backgroundColor: 'rgba(78, 204, 163, 0.1)'
+                  }
+                }}
+              >
+                Open in New Tab
+              </Button>
+            )}
+            
             <Button
               variant="contained"
               startIcon={<DownloadIcon />}
               onClick={handleDownload}
+              fullWidth={isMobile}
               sx={{
                 background: 'linear-gradient(90deg, #6d9eeb 0%, #4a7cc3 100%)',
+                py: 1.2,
+                minWidth: '140px',
                 '&:hover': {
                   background: 'linear-gradient(90deg, #5a8ad6 0%, #3b6db4 100%)',
                 }
@@ -151,16 +203,6 @@ const SecureResumeSection: React.FC = () => {
           </Box>
         </Box>
 
-        {/* Security Notice - Only show when blurred */}
-        {isBlurred && (
-          <Box sx={{ mb: 3, p: 2, backgroundColor: 'rgba(109, 158, 235, 0.1)', borderRadius: '8px' }}>
-            <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-              <SecurityIcon sx={{ fontSize: '1rem', mr: 1, verticalAlign: 'middle' }} />
-              Resume content is blurred for privacy. Click "View Resume" to display the content.
-            </Typography>
-          </Box>
-        )}
-
         {/* Resume Content Container */}
         <Box
           sx={{
@@ -168,7 +210,14 @@ const SecureResumeSection: React.FC = () => {
             backgroundColor: 'rgba(255,255,255,0.02)',
             borderRadius: '12px',
             overflow: 'hidden',
-            minHeight: isMobile ? '700px' : '900px'
+            // Responsive heights based on screen size
+            height: { 
+              xs: '500px',   // Mobile
+              sm: '600px',   // Small tablets
+              md: '700px',   // Medium screens
+              lg: '800px',   // Large screens
+              xl: '900px'    // Extra large screens
+            }
           }}
         >
           {/* Overlay to prevent interaction when blurred */}
@@ -181,194 +230,53 @@ const SecureResumeSection: React.FC = () => {
                 right: 0,
                 bottom: 0,
                 zIndex: 1,
-                cursor: 'not-allowed'
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(0,0,0,0.1)',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.2)',
+                }
               }}
+              onClick={handleViewToggle}
               onContextMenu={(e) => e.preventDefault()}
-            />
-          )}
-
-          {/* PDF Embed or Blurred Content */}
-          <Box
-            sx={{
-              filter: isBlurred ? 'blur(8px)' : 'none',
-              transition: 'filter 0.3s ease',
-              userSelect: isBlurred ? 'none' : 'auto',
-              minHeight: '100%',
-              width: '100%'
-            }}
-          >
-            {!isBlurred ? (
-              // Show actual PDF when not blurred
-              <iframe
-                src="/Colin_Buchheit_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&zoom=FitH"
-                width="100%"
-                height={isMobile ? "700px" : "900px"}
-                style={{
-                  border: 'none',
-                  borderRadius: '12px',
-                  backgroundColor: '#ffffff'
-                }}
-                title="Colin Buchheit Resume"
-              />
-            ) : (
-              // Show placeholder content when blurred - sized like actual PDF
-              <Box
-                sx={{
-                  maxWidth: '8.5in', // Standard letter size width
-                  mx: 'auto', // Center the document
-                  backgroundColor: '#ffffff',
-                  color: '#000000',
-                  fontFamily: 'Arial, sans-serif',
-                  fontSize: '11px', // PDF-like font size
-                  lineHeight: 1.4,
-                  p: { xs: 2, md: 3 }, // Realistic PDF margins
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)', // Paper shadow effect
-                  minHeight: '11in', // Standard letter height
-                  position: 'relative'
+            >
+              <Typography 
+                variant="h6" 
+                sx={{ 
+                  color: 'rgba(255,255,255,0.8)',
+                  textAlign: 'center',
+                  px: 2,
+                  fontSize: { xs: '1rem', md: '1.25rem' }
                 }}
               >
-              {/* Fake Resume Header */}
-                <Box sx={{ textAlign: 'center', mb: 2 }}>
-                  <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#1a1a1a', mb: 0.5 }}>
-                    Colin Buchheit
-                  </Typography>
-                  <Typography sx={{ fontSize: '14px', color: '#555', mb: 0.5 }}>
-                    Software Developer | Full-Stack Engineer
-                  </Typography>
-                  <Typography sx={{ fontSize: '10px', color: '#666' }}>
-                    Sample City, ST | example@email.com | linkedin.com/in/sample | github.com/sample
-                  </Typography>
-                </Box>
+                {isMobile ? 'Tap to view resume' : 'Click to view resume'}
+              </Typography>
+            </Box>
+          )}
 
-                {/* Fake Professional Summary */}
-                <Box sx={{ mb: 2 }}>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
-                    Professional Summary
-                  </Typography>
-                  <Typography sx={{ fontSize: '11px', color: '#444', lineHeight: 1.4 }}>
-                    Experienced software developer with expertise in modern web technologies and cloud platforms. 
-                    Strong background in building scalable applications, implementing best practices, and collaborating 
-                    with cross-functional teams. Passionate about creating efficient solutions and staying current with 
-                    emerging technologies in the software development landscape.
-                  </Typography>
-                </Box>
-
-                {/* Fake Technical Skills */}
-                <Box sx={{ mb: 2 }}>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
-                    Technical Skills
-                  </Typography>
-                  <Grid container spacing={1}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Languages:</strong> JavaScript, Python, Java, C++, HTML, CSS
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Frameworks:</strong> React, Angular, Vue.js, Node.js, Express
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Cloud/DevOps:</strong> AWS, Google Cloud, Docker, Kubernetes
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, Redis
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Tools:</strong> Git, Jenkins, Jira, VS Code, IntelliJ
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.3 }}>
-                        <strong>Other:</strong> REST APIs, GraphQL, Microservices, Agile
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Box>
-
-                {/* Fake Experience */}
-                <Box sx={{ mb: 2 }}>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
-                    Professional Experience
-                  </Typography>
-                  
-                  <Box sx={{ mb: 1.5 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                      <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#1a1a1a' }}>
-                        Senior Software Developer
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#555', fontStyle: 'italic' }}>
-                        2022 - Present
-                      </Typography>
-                    </Box>
-                    <Typography sx={{ fontSize: '11px', color: '#555', fontWeight: 500 }}>
-                      Tech Solutions Inc. | Sample City, ST
-                    </Typography>
-                    <Box sx={{ mt: 0.5 }}>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
-                        • Developed and maintained web applications using modern JavaScript frameworks
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
-                        • Collaborated with product teams to implement new features and improvements
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444', mb: 0.2 }}>
-                        • Optimized application performance and implemented best practices
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#444' }}>
-                        • Mentored junior developers and conducted code reviews
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-
-                {/* Fake Education */}
-                <Box sx={{ mb: 2 }}>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
-                    Education
-                  </Typography>
-                  
-                  <Box sx={{ mb: 1 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                      <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#1a1a1a' }}>
-                        State University
-                      </Typography>
-                      <Typography sx={{ fontSize: '10px', color: '#555' }}>
-                        2020
-                      </Typography>
-                    </Box>
-                    <Typography sx={{ fontSize: '11px', color: '#555' }}>
-                      Bachelor of Science in Computer Science
-                    </Typography>
-                    <Typography sx={{ fontSize: '10px', color: '#666' }}>
-                      GPA: 3.8 | Dean's List | Relevant Coursework: Data Structures, Algorithms
-                    </Typography>
-                  </Box>
-                </Box>
-
-                {/* Fake Projects */}
-                <Box>
-                  <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#2c3e50', mb: 0.5, borderBottom: '1px solid #3498db', pb: 0.2 }}>
-                    Notable Projects
-                  </Typography>
-                  
-                  <Box sx={{ mb: 0.8 }}>
-                    <Typography sx={{ fontSize: '11px', color: '#444' }}>
-                      <strong>E-Commerce Platform</strong> - Personal Project (2023)
-                    </Typography>
-                    <Typography sx={{ fontSize: '10px', color: '#666', pl: 1 }}>
-                      Built full-stack web application with user authentication and payment processing
-                    </Typography>
-                  </Box>
-                  
-                  <Box>
-                    <Typography sx={{ fontSize: '11px', color: '#444' }}>
-                      <strong>Task Management App</strong> - Hackathon Winner (2022)
-                    </Typography>
-                    <Typography sx={{ fontSize: '10px', color: '#666', pl: 1 }}>
-                      Developed mobile-first application for team collaboration and project tracking
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            )}
+          {/* PDF Content */}
+          <Box
+            sx={{
+              filter: isBlurred ? 'blur(12px)' : 'none',
+              transition: 'filter 0.3s ease',
+              height: '100%',
+              width: '100%',
+              userSelect: isBlurred ? 'none' : 'auto'
+            }}
+          >
+            {/* Full PDF embed for all screen sizes */}
+            <iframe
+              src="/Colin_Buchheit_Resume.pdf#toolbar=0&navpanes=0&scrollbar=1&zoom=FitH"
+              width="100%"
+              height="100%"
+              style={{
+                border: 'none',
+                backgroundColor: '#ffffff'
+              }}
+              title="Colin Buchheit Resume"
+            />
           </Box>
         </Box>
       </Box>
