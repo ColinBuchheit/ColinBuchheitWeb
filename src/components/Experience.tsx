@@ -1380,7 +1380,7 @@ const ExperiencePage: React.FC = () => {
                 sx={{ 
                   width: '100%', 
                   height: 'auto',
-                  maxHeight: '600px',
+                  maxHeight: '400px',
                   objectFit: 'contain',
                   borderRadius: '12px',
                   boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
@@ -1412,6 +1412,9 @@ const ExperiencePage: React.FC = () => {
               }}>
                 <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
                   • <strong>8+ Database Types:</strong> PostgreSQL, MongoDB, MySQL, Firebase, and more
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                  • <strong>Driver Support:</strong> Individual Drivers for database type configs and connections
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
                   • <strong>Smart Validation:</strong> Automatic connection testing and verification
@@ -1504,82 +1507,65 @@ const ExperiencePage: React.FC = () => {
               </Grid>
               
               {/* Key Features & Architecture - Nested under Technical Innovation */}
-              <Box sx={{ mt: 4 }}>
-                <Typography 
-                  variant="h5" 
-                  color="primary" 
-                  gutterBottom
-                  sx={{ fontWeight: 600 }}
-                >
-                  <BuildIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-                  Key Features & Architecture
-                </Typography>
-                
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
-                    <Box sx={{ 
-                      backgroundColor: 'rgba(255,255,255,0.03)',
-                      p: 3,
-                      borderRadius: '12px',
-                      borderLeft: '4px solid #4ecca3',
-                      height: '100%'
-                    }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                        <AutoAwesomeIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.5rem' }} />
-                        <Typography variant="h6" sx={{ color: '#4ecca3' }}>
-                          Multi-Agent AI System
-                        </Typography>
-                      </Box>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>Schema Agent:</strong> Automatically analyzes database structures
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>Query Agent:</strong> Converts natural language to SQL/NoSQL using GPT-4
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>Validation Agent:</strong> Ensures query safety and prevents SQL injection
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                        • <strong>Visualization Agent:</strong> Auto-generates charts and insights
+              <Grid container spacing={3} sx={{ mt: 3 }}>
+                {/* Multi-Agent AI System */}
+                <Grid item xs={12}>
+                  <Box sx={{ 
+                    backgroundColor: 'rgba(109, 158, 235, 0.05)',
+                    border: '1px solid rgba(109, 158, 235, 0.1)',
+                    borderRadius: '12px',
+                    p: 3
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <AutoAwesomeIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.5rem' }} />
+                      <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600 }}>
+                        Multi-Agent AI System
                       </Typography>
                     </Box>
-                  </Grid>
-                  
-                  <Grid item xs={12} md={6}>
-                    <Box sx={{ 
-                      backgroundColor: 'rgba(255,255,255,0.03)',
-                      p: 3,
-                      borderRadius: '12px',
-                      borderLeft: '4px solid #6d9eeb',
-                      height: '100%'
-                    }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                        <StorageIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.5rem' }} />
-                        <Typography variant="h6" sx={{ color: '#6d9eeb' }}>
-                          Universal Database Support
-                        </Typography>
-                      </Box>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>SQL:</strong> PostgreSQL, MySQL, SQLite, MS SQL Server
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>NoSQL:</strong> MongoDB, Firebase, CouchDB, DynamoDB
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                        • <strong>Security:</strong> HMAC authentication, rate limiting, input validation
-                      </Typography>
-                      <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                        • <strong>Performance:</strong> Redis caching, connection pooling
-                      </Typography>
-                    </Box>
-                  </Grid>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5, lineHeight: 1.6 }}>
+                      • <strong>Schema Agent:</strong> Automatically analyzes database structures and identifies relationships
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5, lineHeight: 1.6 }}>
+                      • <strong>Query Agent:</strong> Converts natural language to optimized SQL/NoSQL using GPT-4
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5, lineHeight: 1.6 }}>
+                      • <strong>Validation Agent:</strong> Ensures query safety and prevents SQL injection attacks
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
+                      • <strong>Visualization Agent:</strong> Auto-generates interactive charts and data insights
+                    </Typography>
+                  </Box>
                 </Grid>
-              </Box>
+                
+                {/* Universal Database Support */}
+                <Grid item xs={12}>
+                  <Box sx={{ 
+                    backgroundColor: 'rgba(78, 204, 163, 0.05)',
+                    border: '1px solid rgba(78, 204, 163, 0.1)',
+                    borderRadius: '12px',
+                    p: 3
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <StorageIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.5rem' }} />
+                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                        Universal Database Support & Performance
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5, lineHeight: 1.6 }}>
+                      <strong>SQL Databases:</strong> PostgreSQL, MySQL, SQLite, MS SQL Server with optimized query generation
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5, lineHeight: 1.6 }}>
+                      <strong>NoSQL Databases:</strong> MongoDB, Firebase, CouchDB, DynamoDB with intelligent document querying
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
+                      <strong>Enterprise Features:</strong> HMAC authentication, Redis caching, connection pooling, and comprehensive audit trails
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Box>
-        
-        
         {/* Project Impact */}
         <Box 
           sx={{ 
