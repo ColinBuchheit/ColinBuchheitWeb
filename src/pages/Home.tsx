@@ -8,7 +8,6 @@ import {
   Button,
   Paper,
   Chip,
-  Divider,
   useTheme,
   useMediaQuery
 } from '@mui/material';
@@ -20,7 +19,11 @@ import {
   WorkOutline as WorkIcon,
   Storage as StorageIcon,
   Memory as MemoryIcon,
-  AutoAwesome as AutoAwesomeIcon
+  AutoAwesome as AutoAwesomeIcon,
+  VerifiedUser as VerifiedUserIcon,
+  Security as SecurityIcon,
+  Computer as ComputerIcon,
+  OpenInNew as OpenInNewIcon
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
@@ -49,46 +52,56 @@ const Home: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
-  // Define key technologies with groups
+  // Core Technology Stack - Aligned with defined specifications
   const technologies = [
-    { name: "C#", group: "programming" },
+    // Programming & Development
+    { name: "C#/.NET", group: "programming" },
     { name: "Python", group: "programming" },
     { name: "TypeScript", group: "programming" },
     { name: "JavaScript", group: "programming" },
-    { name: "Java", group: "programming" },
-    { name: "YAML", group: "programming" },
     
-    { name: "React", group: "frontend" },
-    { name: "Redux", group: "frontend" },
-    { name: "Angular", group: "frontend" },
-
-    { name: "SQL", group: "database" },
-    { name: "MongoDB", group: "database" },
-    { name: "Firebase", group: "database" },
-
-    { name: "Linux", group: "os", tooltip: "Parrot Security, Kali, Ubuntu" },
-
-    { 
-      name: "Azure Services", 
-      group: "cloud", 
-      tooltip: "Data Factory, Data Lake Storage, Databricks, Kubernetes" 
-    },
+    // Frontend & Full-Stack
+    { name: "React/Redux", group: "frontend" },
+    { name: "Node.js", group: "frontend" },
+    { name: "Express.js", group: "frontend" },
+    
+    // Azure AI & Cloud Specialization (AI-102 Certified)
     { 
       name: "Azure AI Services", 
       group: "ai", 
-      tooltip: "Cognitive Services, Language Studio, AI Vision, Azure OpenAI" 
+      tooltip: "Cognitive Services, OpenAI, Computer Vision" 
     },
     { 
-      name: "Azure ML Studio", 
-      group: "ai", 
-      tooltip: "Train & deploy models in enterprise workflows" 
+      name: "Azure DevOps", 
+      group: "cloud", 
+      tooltip: "CI/CD pipelines, deployment automation" 
     },
-
-    { name: "Neural Networks", group: "ai" },
-    { name: "Decision Trees", group: "ai" },
-    { name: "AI Agent Networks", group: "ai" },
-
-    { name: "Process Automation", group: "devops" }
+    { 
+      name: "Data Factory", 
+      group: "cloud", 
+      tooltip: "ETL pipelines and data integration" 
+    },
+    { 
+      name: "Kubernetes", 
+      group: "cloud", 
+      tooltip: "Container orchestration and scaling" 
+    },
+    { 
+      name: "Machine Learning", 
+      group: "ai", 
+      tooltip: "Model training and deployment" 
+    },
+    { 
+      name: "Process Automation", 
+      group: "ai", 
+      tooltip: "Intelligent workflow automation" 
+    },
+    
+    // Enterprise Development
+    { name: "Full-Stack Architecture", group: "enterprise" },
+    { name: "API Design", group: "enterprise" },
+    { name: "Database Systems", group: "enterprise" },
+    { name: "CI/CD Pipelines", group: "enterprise" }
   ];
 
   return (
@@ -102,7 +115,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <Container maxWidth="lg">
         <Grid container spacing={3} alignItems="center" sx={{ mb: 6 }}>
-          {/* Profile Image - Now centered on mobile and on the left for larger screens */}
+          {/* Profile Image */}
           <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -112,10 +125,10 @@ const Home: React.FC = () => {
               <Box
                 sx={{
                   width: { xs: '220px', md: '380px' },
-                  height: { xs: '260px', md: '510px' }, // Increased height for oval shape
+                  height: { xs: '260px', md: '510px' },
                   position: 'relative',
                   overflow: 'hidden',
-                  borderRadius: '75% / 80%', // Creates oval shape (horizontal/vertical radius)
+                  borderRadius: '75% / 80%',
                   boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
                 }}
               >
@@ -127,7 +140,7 @@ const Home: React.FC = () => {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    objectPosition: '50% 60%', // Adjusted to show more of upper body/face
+                    objectPosition: '50% 60%',
                   }}
                 />
               </Box>
@@ -308,7 +321,7 @@ const Home: React.FC = () => {
           </Grid>
         </Grid>
         
-        {/* Technologies Section with categories - Modified to align left */}
+        {/* Core Technologies Section - Updated to match specifications */}
         <Box sx={{ mb: 6 }}>
           <Typography 
             variant="h6" 
@@ -316,7 +329,7 @@ const Home: React.FC = () => {
             gutterBottom
             sx={{ textAlign: { xs: 'center', md: 'left' }, mb: 1 }}
           >
-            Key Technologies
+            Core Technology Stack
           </Typography>
           
           <Typography 
@@ -329,10 +342,10 @@ const Home: React.FC = () => {
               mx: { xs: 'auto', md: 0 }
             }}
           >
-            My expertise spans programming languages, frameworks, cloud platforms, and AI development
+            
           </Typography>
           
-          {/* Programming Languages Category */}
+          {/* Programming & Development */}
           <Box sx={{ mb: 4 }}>
             <Typography 
               variant="subtitle1" 
@@ -344,7 +357,7 @@ const Home: React.FC = () => {
                 mb: 2 
               }}
             >
-              <CodeIcon sx={{ mr: 1 }} /> Programming & Languages
+              <CodeIcon sx={{ mr: 1 }} /> Programming & Development
             </Typography>
             <Box 
               sx={{ 
@@ -355,7 +368,7 @@ const Home: React.FC = () => {
               }}
             >
               {technologies
-                .filter(tech => tech.group === 'programming')
+                .filter(tech => tech.group === 'programming' || tech.group === 'frontend')
                 .map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -381,7 +394,7 @@ const Home: React.FC = () => {
             </Box>
           </Box>
           
-          {/* Frontend & Cloud Category */}
+          {/* Azure AI & Cloud Specialization */}
           <Box sx={{ mb: 4 }}>
             <Typography 
               variant="subtitle1" 
@@ -393,7 +406,7 @@ const Home: React.FC = () => {
                 mb: 2 
               }}
             >
-              <StorageIcon sx={{ mr: 1 }} /> Frameworks & Cloud Platforms
+              <MemoryIcon sx={{ mr: 1 }} /> Azure AI & Cloud Specialization
             </Typography>
             <Box 
               sx={{ 
@@ -404,7 +417,7 @@ const Home: React.FC = () => {
               }}
             >
               {technologies
-                .filter(tech => tech.group === 'frontend' || tech.group === 'cloud' || tech.group === 'database' || tech.group === 'os')
+                .filter(tech => tech.group === 'ai' || tech.group === 'cloud')
                 .map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -431,7 +444,7 @@ const Home: React.FC = () => {
             </Box>
           </Box>
           
-          {/* AI & Automation Category */}
+          {/* Enterprise Development */}
           <Box>
             <Typography 
               variant="subtitle1" 
@@ -443,7 +456,7 @@ const Home: React.FC = () => {
                 mb: 2 
               }}
             >
-              <MemoryIcon sx={{ mr: 1 }} /> AI & Automation
+              <StorageIcon sx={{ mr: 1 }} /> Enterprise Development
             </Typography>
             <Box 
               sx={{ 
@@ -454,7 +467,7 @@ const Home: React.FC = () => {
               }}
             >
               {technologies
-                .filter(tech => tech.group === 'ai' || tech.group === 'devops')
+                .filter(tech => tech.group === 'enterprise')
                 .map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -481,6 +494,207 @@ const Home: React.FC = () => {
           </Box>
         </Box>
         
+        {/* Professional Certifications Section */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          style={{ marginBottom: '2rem' }}
+        >
+          <Paper 
+            elevation={0}
+            sx={{ 
+              p: 4, 
+              borderRadius: '16px',
+              background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+              border: '1px solid rgba(255,255,255,0.05)'
+            }}
+          >
+            <Typography 
+              variant="h4" 
+              gutterBottom 
+              color="primary"
+              sx={{ 
+                fontWeight: 600,
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                mb: 4,
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  width: '60px',
+                  height: '4px',
+                  bottom: '-8px',
+                  left: 0,
+                  backgroundColor: '#4ecca3',
+                  borderRadius: '2px'
+                }
+              }}
+            >
+              <VerifiedUserIcon sx={{ mr: 2, fontSize: '2rem' }} />
+              Professional Certifications
+            </Typography>
+            
+            <Grid container spacing={3}>
+              {/* Azure AI Engineer Associate */}
+              <Grid item xs={12} lg={4}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                  <Box 
+                    component="a"
+                    href="https://learn.microsoft.com/api/credentials/share/en-us/ColinBuchheit-2794/DAC524C995B7F868?sharingId=1B033D14A58DDA25"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ 
+                      p: 3,
+                      backgroundColor: 'rgba(78, 204, 163, 0.1)',
+                      borderRadius: '12px',
+                      border: '2px solid rgba(78, 204, 163, 0.2)',
+                      position: 'relative',
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      textDecoration: 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        backgroundColor: 'rgba(78, 204, 163, 0.15)',
+                        transform: 'translateY(-5px)',
+                        boxShadow: '0 10px 25px rgba(78, 204, 163, 0.2)'
+                      }
+                    }}
+                  >
+                    <Box sx={{
+                      position: 'absolute',
+                      top: -12,
+                      right: 16,
+                      backgroundColor: '#4ecca3',
+                      color: '#000',
+                      px: 2,
+                      py: 0.5,
+                      borderRadius: '12px',
+                      fontSize: '0.75rem',
+                      fontWeight: 600
+                    }}>
+                      CERTIFIED
+                    </Box>
+                    
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Box
+                        component="img"
+                        src="/images/microsoft-certified-associate-badge.svg"
+                        alt="Microsoft Certified Associate Badge"
+                        sx={{
+                          width: '40px',
+                          height: '40px',
+                          mr: 1.5
+                        }}
+                        onError={(e: any) => {
+                          // Fallback to icon if SVG fails to load
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                      <MemoryIcon sx={{ color: '#4ecca3', fontSize: '1.8rem', display: 'none' }} id="fallback-icon" />
+                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                        Azure AI Engineer Associate
+                      </Typography>
+                      <OpenInNewIcon sx={{ color: '#4ecca3', ml: 'auto', fontSize: '1.2rem' }} />
+                    </Box>
+                    
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                      Microsoft Certified: AI-102
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                      Issued: May 2025
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                      Validates skills in designing and implementing AI solutions using Azure Cognitive Services, Azure Machine Learning, 
+                      and Knowledge Mining. Covers computer vision, natural language processing, conversational AI, and responsible AI practices.
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </Grid>
+              
+              {/* Cybersecurity Certificate */}
+              <Grid item xs={12} lg={4}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <Box sx={{ 
+                    p: 3,
+                    backgroundColor: 'rgba(109, 158, 235, 0.1)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(109, 158, 235, 0.2)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <SecurityIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.8rem' }} />
+                      <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600 }}>
+                        Cybersecurity Certificate
+                      </Typography>
+                    </Box>
+                    
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                      University of Missouri
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                      Issued: May 2025
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                      Completed a specialized certificate in cybersecurity covering network security, ethical hacking, digital forensics, and risk management. Developed skills in identifying vulnerabilities, securing systems, and implementing defensive strategies aligned with industry standards.
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </Grid>
+              
+              {/* Information Systems Certificate */}
+              <Grid item xs={12} lg={4}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Box sx={{ 
+                    p: 3,
+                    backgroundColor: 'rgba(78, 204, 163, 0.1)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(78, 204, 163, 0.2)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <ComputerIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.8rem' }} />
+                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                        Information Systems & Technology
+                      </Typography>
+                    </Box>
+                    
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                      University of Missouri
+                    </Typography>
+                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                      Issued: May 2025
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                      Completed a 12-credit program focused on programming, database systems, and web development. Gained hands-on experience with information systems architecture, front-end design, and data management tools, preparing for roles in IT and systems integration.
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </Grid>
+            </Grid>
+          </Paper>
+        </motion.div>
+        
         {/* About Me Section */}
         <motion.div
           initial="hidden"
@@ -504,6 +718,7 @@ const Home: React.FC = () => {
               sx={{ 
                 fontWeight: 600,
                 position: 'relative',
+                mb: 4,
                 '&::after': {
                   content: '""',
                   position: 'absolute',
@@ -519,7 +734,7 @@ const Home: React.FC = () => {
               About Me
             </Typography>
             
-            <Grid container spacing={4} sx={{ mt: 1 }}>
+            <Grid container spacing={4}>
               <Grid item xs={12} md={7}>
                 <Typography 
                   variant="body1" 
@@ -529,7 +744,7 @@ const Home: React.FC = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  Hello! I'm a recent graduate from the University of Missouri-Columbia with a B.S. in Information Technology, focusing on software development and artificial intelligence.
+                   Hello! I'm a recent graduate from the University of Missouri-Columbia with a B.S. in Information Technology, focusing on software development and artificial intelligence.
                 </Typography>
                 
                 <Typography 
@@ -576,11 +791,11 @@ const Home: React.FC = () => {
                           <Typography variant="h6" sx={{ mb: 0.5 }}>Education</Typography>
                           <Typography variant="body2" color="textSecondary">
                             University of Missouri-Columbia<br />
-                            B.S. Information Technology
+                            B.S. Information Technology - May 2025
                           </Typography>
                           <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-                            Saint Louis Community College<br />
-                            Associate Degree in IT
+                            Major GPA: 3.96 | Overall: 3.78<br />
+                            High Dean's List Every Semester
                           </Typography>
                         </Box>
                       </Box>
@@ -603,11 +818,14 @@ const Home: React.FC = () => {
                             MX Holdings<br />
                             Enterprise Software Developer Intern
                           </Typography>
+                          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                            Summer 2024 - January 2025
+                          </Typography>
                         </Box>
                       </Box>
                     </motion.div>
                     
-                    {/* Development Quick Info */}
+                    {/* Achievement Quick Info */}
                     <motion.div variants={fadeInUp}>
                       <Box sx={{ 
                         display: 'flex', 
@@ -618,11 +836,11 @@ const Home: React.FC = () => {
                       }}>
                         <AutoAwesomeIcon sx={{ color: '#f0db4f', mr: 2, fontSize: '2rem' }} />
                         <Box>
-                          <Typography variant="h6" sx={{ mb: 0.5 }}>Development</Typography>
+                          <Typography variant="h6" sx={{ mb: 0.5 }}>Achievements</Typography>
                           <Typography variant="body2" color="textSecondary">
-                            Full-Stack Development<br />
-                            AI Model & Agent Network Dev<br />
-                            Mizzou Hackathon 2023 Winner
+                            Azure AI-102 Certified<br />
+                            Featured Mizzou IT Capstone<br />
+                            TigerHacks 2023 First Place Winner
                           </Typography>
                         </Box>
                       </Box>
