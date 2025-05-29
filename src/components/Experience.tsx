@@ -29,7 +29,8 @@ import {
   VisibilityOff as VisibilityOffIcon,
   Security as SecurityIcon,
   Warning as WarningIcon,
-  OpenInNew as OpenInNewIcon
+  OpenInNew as OpenInNewIcon,
+  AutoAwesome as AutoAwesomeIcon  
 
 } from '@mui/icons-material';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -1185,482 +1186,437 @@ const ExperiencePage: React.FC = () => {
               </Paper>
             </motion.div>
           </Grid>
-   {/* MaiQuery Project - CONCISE VERSION */}
-          <Grid item xs={12}>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInRight}
-            >
-              <Paper 
-                elevation={0}
+{/* MaiQuery Project - COMPLETE FINAL VERSION */}
+<Grid item xs={12}>
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={slideInRight}
+  >
+    <Paper 
+      elevation={0}
+      sx={{ 
+        borderRadius: '16px',
+        overflow: 'hidden',
+        background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+        border: '1px solid rgba(255,255,255,0.05)'
+      }}
+    >
+      {/* Header with gradient */}
+      <Box 
+        sx={{ 
+          p: 0.5, 
+          background: 'linear-gradient(90deg, #4ecca3 0%, #6d9eeb 100%)'
+        }}
+      />
+      
+      <Box sx={{ p: { xs: 3, md: 4 } }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <MemoryIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
+          <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
+            MaiQuery - AI Database Platform
+          </Typography>
+        </Box>
+        
+        <Typography variant="h5" sx={{ mb: 2, color: '#ffffff' }}>
+          Multi-Agent AI Database Query & Analysis System
+        </Typography>
+        
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            mb: 3,
+            color: 'rgba(255,255,255,0.9)',
+            lineHeight: 1.8
+          }}
+        >
+          Developed an AI-powered platform that allows users to query multiple database types using natural language. 
+          The system employs specialized AI agents for query generation, validation, visualization, and security, 
+          supporting 8+ database types including PostgreSQL, MongoDB, MySQL, and more.
+        </Typography>
+        
+        {/* Main Dashboard Section */}
+        <Grid container spacing={4} alignItems="center" sx={{ mb: 5 }}>
+          <Grid item xs={12} md={6}>
+            <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+              <Box
+                component="img"
+                src="/images/MaiQuery_Dashboard.png"
+                alt="MaiQuery Dashboard Interface"
                 sx={{ 
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
-                  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
-                  border: '1px solid rgba(255,255,255,0.05)'
+                  width: '100%', 
+                  height: 'auto', 
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(255,255,255,0.1)'
                 }}
-              >
-                {/* Header with gradient */}
-                <Box 
-                  sx={{ 
-                    p: 0.5, 
-                    background: 'linear-gradient(90deg, #4ecca3 0%, #6d9eeb 100%)'
-                  }}
-                />
-                
-                <Box sx={{ p: { xs: 3, md: 4 } }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <MemoryIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
-                    <Typography variant="h4" color="primary" sx={{ fontWeight: 600 }}>
-                      MaiQuery - AI Database Platform
-                    </Typography>
-                  </Box>
-                  
-                  <Typography variant="h5" sx={{ mb: 2, color: '#ffffff' }}>
-                    Multi-Agent AI Database Query & Analysis System
-                  </Typography>
-                  
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      mb: 3,
-                      color: 'rgba(255,255,255,0.9)',
-                      lineHeight: 1.8
-                    }}
-                  >
-                    Developed an AI-powered platform that allows users to query multiple database types using natural language. 
-                    The system employs specialized AI agents for query generation, validation, visualization, and security, 
-                    supporting 8+ database types including PostgreSQL, MongoDB, MySQL, and more.
-                  </Typography>
-                  
-                  {/* Main Dashboard Section */}
-                  <Grid container spacing={4} alignItems="center" sx={{ mb: 5 }}>
-                    <Grid item xs={12} md={6}>
-                      <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
-                        <Box
-                          component="img"
-                          src="/images/MaiQuery_Dashboard.png"
-                          alt="MaiQuery Dashboard Interface"
-                          sx={{ 
-                            width: '100%', 
-                            height: 'auto', 
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                            border: '1px solid rgba(255,255,255,0.1)'
-                          }}
-                        />
-                      </motion.div>
-                    </Grid>
-                    
-                    <Grid item xs={12} md={6}>
-                      <Typography 
-                        variant="h5" 
-                        color="primary" 
-                        gutterBottom 
-                        sx={{ fontWeight: 600, mb: 2 }}
-                      >
-                        Natural Language Database Queries
-                      </Typography>
-                      
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: 'rgba(255,255,255,0.9)',
-                          lineHeight: 1.7,
-                          mb: 2.5,
-                          fontSize: '1rem'
-                        }}
-                      >
-                        Users can ask questions about their data in plain English, and the AI system automatically 
-                        generates optimized queries, executes them safely, and provides both raw results and 
-                        intelligent visualizations.
-                      </Typography>
-                      
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: 'rgba(255,255,255,0.9)',
-                          lineHeight: 1.7,
-                          mb: 3,
-                          fontSize: '1rem'
-                        }}
-                      >
-                        The dashboard provides real-time database monitoring, connection management, and 
-                        comprehensive query history for enterprise-grade database operations.
-                      </Typography>
-
-                      {/* Key Benefits List */}
-                      <Box sx={{ 
-                        backgroundColor: 'rgba(78, 204, 163, 0.05)',
-                        border: '1px solid rgba(78, 204, 163, 0.1)',
-                        borderRadius: '8px',
-                        p: 2.5
-                      }}>
-                        <Typography variant="subtitle2" sx={{ color: '#4ecca3', fontWeight: 600, mb: 1.5 }}>
-                          Key Capabilities:
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
-                          • Natural language to SQL/NoSQL conversion
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
-                          • Multi-database type support (8+ databases)
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
-                          • Intelligent query validation and security
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                          • Auto-generated data visualizations
-                        </Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                  
-                  {/* Supporting Features Section */}
-                  <Grid container spacing={4} sx={{ mb: 5 }}>
-                    {/* Schema Discovery - Wider Image */}
-                    <Grid item xs={12} md={8}>
-                      <Box sx={{ mb: 2 }}>
-                        <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
-                          Intelligent Schema Discovery & Analysis
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', mb: 2 }}>
-                          Automatically analyzes database structures across different types, providing intelligent insights 
-                          and suggestions for optimal query generation.
-                        </Typography>
-                      </Box>
-                      <motion.div 
-                        whileHover={{ scale: 1.02 }} 
-                        whileTap={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <Box
-                          component="img"
-                          src="/images/MaiQuery_Schema.png"
-                          alt="Database Schema Analysis"
-                          sx={{ 
-                            width: '100%', 
-                            height: 'auto',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                              boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
-                            }
-                          }}
-                        />
-                      </motion.div>
-                    </Grid>
-                    
-                    {/* Database Connections - Taller Image */}
-                    <Grid item xs={12} md={4}>
-                      <Box sx={{ mb: 2 }}>
-                        <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
-                          Multi-Database Management
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', mb: 2 }}>
-                          Monitor and manage connections across different database types with real-time status tracking.
-                        </Typography>
-                      </Box>
-                      <motion.div 
-                        whileHover={{ scale: 1.02 }} 
-                        whileTap={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <Box
-                          component="img"
-                          src="/images/MaiQuery_Connections.png"
-                          alt="Multi-Database Connection Management"
-                          sx={{ 
-                            width: '100%', 
-                            height: 'auto',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                              boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
-                            }
-                          }}
-                        />
-                      </motion.div>
-                    </Grid>
-                  </Grid>
-                  
-                  {/* Additional Database Features */}
-                  <Grid container spacing={4} sx={{ mb: 5 }}>
-                    {/* Universal Database Support - Wide/Flat Image */}
-                    <Grid item xs={12}>
-                      <Box sx={{ mb: 2 }}>
-                        <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
-                          Universal Database Support
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', mb: 2 }}>
-                          Connect to multiple database types with unified interface and intelligent connection management.
-                        </Typography>
-                      </Box>
-                      <motion.div 
-                        whileHover={{ scale: 1.01 }} 
-                        whileTap={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        <Box
-                          component="img"
-                          src="/images/MaiQuery_AddConnection.png"
-                          alt="Universal Database Connection Setup"
-                          sx={{ 
-                            width: '100%', 
-                            height: 'auto',
-                            maxHeight: '400px',
-                            objectFit: 'contain',
-                            borderRadius: '12px',
-                            boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            backgroundColor: 'rgba(255,255,255,0.02)',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                              boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
-                            }
-                          }}
-                        />
-                      </motion.div>
-                    </Grid>
-                  </Grid>
-
-                  {/* Technical Innovation Section */}
-                  <Box sx={{ mb: 4 }}>
-                    <Typography 
-                      variant="h5" 
-                      color="primary" 
-                      gutterBottom
-                      sx={{ fontWeight: 600, mb: 3 }}
-                    >
-                      Technical Innovation & Implementation
-                    </Typography>
-                    
-                    <Grid container spacing={3}>
-                      {/* AI Architecture */}
-                      <Grid item xs={12} md={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(109, 158, 235, 0.05)',
-                          border: '1px solid rgba(109, 158, 235, 0.1)',
-                          borderRadius: '12px',
-                          p: 3,
-                          height: '100%'
-                        }}>
-                          <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600, mb: 2 }}>
-                            🧠 Advanced AI Orchestration
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 2, lineHeight: 1.6 }}>
-                            Built using <strong>CrewAI framework</strong> for sophisticated multi-agent coordination, 
-                            allowing specialized AI agents to work together seamlessly for complex database operations.
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
-                            Each agent has a specific role: schema analysis, query generation, validation, and visualization, 
-                            creating a robust pipeline that handles enterprise-level database complexity.
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      
-                      {/* Security & Performance */}
-                      <Grid item xs={12} md={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(78, 204, 163, 0.05)',
-                          border: '1px solid rgba(78, 204, 163, 0.1)',
-                          borderRadius: '12px',
-                          p: 3,
-                          height: '100%'
-                        }}>
-                          <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600, mb: 2 }}>
-                            🔒 Enterprise Security & Performance
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 2, lineHeight: 1.6 }}>
-                            Implements <strong>multi-layered security</strong> with HMAC authentication, comprehensive 
-                            input validation, and SQL injection prevention to ensure safe database operations.
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
-                            <strong>Redis caching</strong> and connection pooling optimize performance, while rate limiting 
-                            and audit trails provide enterprise-grade monitoring and control.
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-
-                  {/* Database Support Matrix */}
-                  <Box sx={{ mb: 4 }}>
-                    <Typography variant="h6" color="primary" gutterBottom sx={{ fontWeight: 600, mb: 2 }}>
-                      Production-Ready Implementation
-                    </Typography>
-                    
-                    <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.03)',
-                          borderRadius: '8px',
-                          p: 2.5,
-                          borderLeft: '4px solid #6d9eeb'
-                        }}>
-                          <Typography variant="subtitle2" sx={{ color: '#6d9eeb', fontWeight: 600, mb: 1.5 }}>
-                            SQL Databases
-                          </Typography>
-                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                            {['PostgreSQL', 'MySQL', 'SQLite', 'MS SQL Server'].map((db) => (
-                              <Chip
-                                key={db}
-                                label={db}
-                                size="small"
-                                sx={{
-                                  bgcolor: 'rgba(109, 158, 235, 0.15)',
-                                  color: '#ffffff',
-                                  fontSize: '0.75rem'
-                                }}
-                              />
-                            ))}
-                          </Box>
-                        </Box>
-                      </Grid>
-                      
-                      <Grid item xs={12} sm={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.03)',
-                          borderRadius: '8px',
-                          p: 2.5,
-                          borderLeft: '4px solid #4ecca3'
-                        }}>
-                          <Typography variant="subtitle2" sx={{ color: '#4ecca3', fontWeight: 600, mb: 1.5 }}>
-                            NoSQL Databases
-                          </Typography>
-                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                            {['MongoDB', 'Firebase', 'CouchDB', 'DynamoDB'].map((db) => (
-                              <Chip
-                                key={db}
-                                label={db}
-                                size="small"
-                                sx={{
-                                  bgcolor: 'rgba(78, 204, 163, 0.15)',
-                                  color: '#ffffff',
-                                  fontSize: '0.75rem'
-                                }}
-                              />
-                            ))}
-                          </Box>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                  
-                  {/* Key Features & Technical Implementation */}
-                  <Box sx={{ mb: 4 }}>
-                    <Typography 
-                      variant="h5" 
-                      color="primary" 
-                      gutterBottom
-                      sx={{ fontWeight: 600 }}
-                    >
-                      <BuildIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
-                      Key Features & Architecture
-                    </Typography>
-                    
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} md={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.03)',
-                          p: 3,
-                          borderRadius: '12px',
-                          borderLeft: '4px solid #4ecca3',
-                          height: '100%'
-                        }}>
-                          <Typography variant="h6" gutterBottom sx={{ color: '#4ecca3' }}>
-                            🤖 Multi-Agent AI System
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>Schema Agent:</strong> Automatically analyzes database structures
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>Query Agent:</strong> Converts natural language to SQL/NoSQL using GPT-4
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>Validation Agent:</strong> Ensures query safety and prevents SQL injection
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                            • <strong>Visualization Agent:</strong> Auto-generates charts and insights
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      
-                      <Grid item xs={12} md={6}>
-                        <Box sx={{ 
-                          backgroundColor: 'rgba(255,255,255,0.03)',
-                          p: 3,
-                          borderRadius: '12px',
-                          borderLeft: '4px solid #6d9eeb',
-                          height: '100%'
-                        }}>
-                          <Typography variant="h6" gutterBottom sx={{ color: '#6d9eeb' }}>
-                            🗄️ Universal Database Support
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>SQL:</strong> PostgreSQL, MySQL, SQLite, MS SQL Server
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>NoSQL:</strong> MongoDB, Firebase, CouchDB, DynamoDB
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
-                            • <strong>Security:</strong> HMAC authentication, rate limiting, input validation
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                            • <strong>Performance:</strong> Redis caching, connection pooling
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                  
-                  {/* Technology Stack */}
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-                    {[
-                      'GPT-4', 'Claude AI', 'CrewAI', 'FastAPI', 'Redis', 
-                      'PostgreSQL', 'MongoDB', 'React', 'Python', 'Docker'
-                    ].map((tech) => (
-                      <Chip
-                        key={tech}
-                        label={tech}
-                        size="small"
-                        sx={{
-                          bgcolor: 'rgba(78, 204, 163, 0.1)',
-                          color: '#ffffff',
-                          fontWeight: 500
-                        }}
-                      />
-                    ))}
-                  </Box>
-                  
-                  {/* Project Impact */}
-                  <Box 
-                    sx={{ 
-                      p: 3, 
-                      backgroundColor: 'rgba(78, 204, 163, 0.05)', 
-                      borderRadius: '8px',
-                      border: '1px solid rgba(78, 204, 163, 0.1)'
-                    }}
-                  >
-                    <Typography variant="body1" sx={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.9)' }}>
-                      This platform democratizes database access by allowing non-technical users to query complex databases using natural language, 
-                      while maintaining enterprise-grade security and performance standards. The multi-agent architecture showcases advanced AI 
-                      orchestration and demonstrates practical implementation of large language models in production environments.
-                    </Typography>
-                  </Box>
-                </Box>
-              </Paper>
+              />
             </motion.div>
           </Grid>
+          
+          <Grid item xs={12} md={6}>
+            <Typography 
+              variant="h5" 
+              color="primary" 
+              gutterBottom 
+              sx={{ fontWeight: 600, mb: 2 }}
+            >
+              Natural Language Database Queries
+            </Typography>
+            
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: 1.7,
+                mb: 2.5,
+                fontSize: '1rem'
+              }}
+            >
+              Users can ask questions about their data in plain English, and the AI system automatically 
+              generates optimized queries, executes them safely, and provides both raw results and 
+              intelligent visualizations.
+            </Typography>
+            
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: 1.7,
+                mb: 3,
+                fontSize: '1rem'
+              }}
+            >
+              The dashboard provides real-time database monitoring, connection management, and 
+              comprehensive query history for enterprise-grade database operations.
+            </Typography>
+
+            {/* Key Benefits List */}
+            <Box sx={{ 
+              backgroundColor: 'rgba(78, 204, 163, 0.05)',
+              border: '1px solid rgba(78, 204, 163, 0.1)',
+              borderRadius: '8px',
+              p: 2.5,
+              mb: 3
+            }}>
+              <Typography variant="subtitle2" sx={{ color: '#4ecca3', fontWeight: 600, mb: 1.5 }}>
+                Key Capabilities:
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                • Natural language to SQL/NoSQL conversion
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                • Multi-database type support (8+ databases)
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                • Intelligent query validation and security
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                • Auto-generated data visualizations
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+        
+        {/* Platform Features - Reorganized Layout */}
+        <Box sx={{ mb: 5 }}>
+          <Typography 
+            variant="h5" 
+            color="primary" 
+            gutterBottom
+            sx={{ fontWeight: 600, mb: 3 }}
+          >
+            Platform Features & Database Management
+          </Typography>
+          
+          {/* Schema Discovery - Full Width for Better Visibility */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
+              Intelligent Schema Discovery & Analysis
+            </Typography>
+            <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 3, lineHeight: 1.7, maxWidth: '800px' }}>
+              Automatically analyzes database structures across different types, providing intelligent insights 
+              and suggestions for optimal query generation. The system maps relationships, identifies data types, 
+              and creates comprehensive schema visualizations.
+            </Typography>
+            
+            <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
+              <Box
+                component="img"
+                src="/images/MaiQuery_Schema.png"
+                alt="Database Schema Analysis and Discovery Interface"
+                sx={{ 
+                  width: '100%', 
+                  height: 'auto',
+                  maxHeight: '400px',
+                  objectFit: 'contain',
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(0,0,0,0.2)'
+                }}
+              />
+            </motion.div>
+          </Box>
+          
+          {/* Connection Monitoring - Full Width for Better Visibility */}
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 1 }}>
+              Real-Time Connection Monitoring
+            </Typography>
+            <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 3, lineHeight: 1.7, maxWidth: '800px' }}>
+              Monitor and manage connections across different database types with real-time health status, 
+              performance metrics, and automated diagnostics. Track connection uptime, query performance, 
+              and system resources across your entire database infrastructure.
+            </Typography>
+            
+            <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
+              <Box
+                component="img"
+                src="/images/MaiQuery_Connections.png"
+                alt="Real-time Database Connection Monitoring Dashboard"
+                sx={{ 
+                  width: '100%', 
+                  height: 'auto',
+                  maxHeight: '400px',
+                  objectFit: 'contain',
+                  borderRadius: '12px',
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(0,0,0,0.2)'
+                }}
+              />
+            </motion.div>
+          </Box>
+          
+          {/* Connection Setup & Technical Innovation - Side by Side Layout */}
+          <Grid container spacing={4} alignItems="flex-start">
+            {/* Left Side - Connection Setup */}
+            <Grid item xs={12} md={5}>
+              <Typography variant="h6" color="primary" sx={{ fontWeight: 600, mb: 2 }}>
+                Universal Database Connection Setup
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)', mb: 3, lineHeight: 1.7 }}>
+                Streamlined setup wizard supporting multiple database types with intelligent configuration validation 
+                and automated parameter detection across SQL and NoSQL databases.
+              </Typography>
+              
+              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                <Box
+                  component="img"
+                  src="/images/MaiQuery_AddConnection.png"
+                  alt="Universal Database Connection Setup Wizard"
+                  sx={{ 
+                    width: '100%', 
+                    height: 'auto',
+                    borderRadius: '12px',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.3)',
+                    border: '1px solid rgba(255,255,255,0.1)'
+                  }}
+                />
+              </motion.div>
+              
+              <Box sx={{ 
+                backgroundColor: 'rgba(109, 158, 235, 0.05)',
+                border: '1px solid rgba(109, 158, 235, 0.1)',
+                borderRadius: '8px',
+                p: 2.5,
+                mt: 3
+              }}>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                  • <strong>8+ Database Types:</strong> PostgreSQL, MongoDB, MySQL, Firebase, and more
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                  • <strong>Smart Validation:</strong> Automatic connection testing and verification
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1 }}>
+                  • <strong>Secure Setup:</strong> Encrypted credentials and connection pooling
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                  • <strong>Universal Interface:</strong> Consistent setup across SQL and NoSQL databases
+                </Typography>
+              </Box>
+            </Grid>
+            
+            {/* Right Side - Technical Innovation Boxes Stacked */}
+            <Grid item xs={12} md={7}>
+              <Typography 
+                variant="h5" 
+                color="primary" 
+                gutterBottom
+                sx={{ fontWeight: 600, mb: 3 }}
+              >
+                Technical Innovation & Implementation
+              </Typography>
+              
+              <Grid container spacing={3}>
+                {/* AI Architecture - Top */}
+                <Grid item xs={12}>
+                  <Box sx={{ 
+                    backgroundColor: 'rgba(109, 158, 235, 0.05)',
+                    border: '1px solid rgba(109, 158, 235, 0.1)',
+                    borderRadius: '12px',
+                    p: 3
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <MemoryIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.5rem' }} />
+                      <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600 }}>
+                        Advanced AI Orchestration
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 2, lineHeight: 1.6 }}>
+                      Built using <strong>CrewAI framework</strong> for sophisticated multi-agent coordination, 
+                      allowing specialized AI agents to work together seamlessly for complex database operations.
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
+                      Each agent has a specific role: schema analysis, query generation, validation, and visualization, 
+                      creating a robust pipeline that handles enterprise-level database complexity.
+                    </Typography>
+                  </Box>
+                </Grid>
+                
+                {/* Security & Performance - Bottom */}
+                <Grid item xs={12}>
+                  <Box sx={{ 
+                    backgroundColor: 'rgba(78, 204, 163, 0.05)',
+                    border: '1px solid rgba(78, 204, 163, 0.1)',
+                    borderRadius: '12px',
+                    p: 3
+                  }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <SecurityIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.5rem' }} />
+                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                        Enterprise Security & Performance
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 2, lineHeight: 1.6 }}>
+                      Implements <strong>multi-layered security</strong> with HMAC authentication, comprehensive 
+                      input validation, and SQL injection prevention to ensure safe database operations.
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.6 }}>
+                      <strong>Redis caching</strong> and connection pooling optimize performance, while rate limiting 
+                      and audit trails provide enterprise-grade monitoring and control.
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Key Features & Architecture - Moved Below Technical Innovation */}
+        <Box sx={{ mb: 4 }}>
+          <Typography 
+            variant="h5" 
+            color="primary" 
+            gutterBottom
+            sx={{ fontWeight: 600 }}
+          >
+            <BuildIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+            Key Features & Architecture
+          </Typography>
+          
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ 
+                backgroundColor: 'rgba(255,255,255,0.03)',
+                p: 3,
+                borderRadius: '12px',
+                borderLeft: '4px solid #4ecca3',
+                height: '100%'
+              }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <AutoAwesomeIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.5rem' }} />
+                  <Typography variant="h6" sx={{ color: '#4ecca3' }}>
+                    Multi-Agent AI System
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>Schema Agent:</strong> Automatically analyzes database structures
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>Query Agent:</strong> Converts natural language to SQL/NoSQL using GPT-4
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>Validation Agent:</strong> Ensures query safety and prevents SQL injection
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                  • <strong>Visualization Agent:</strong> Auto-generates charts and insights
+                </Typography>
+              </Box>
+            </Grid>
+            
+            <Grid item xs={12} md={6}>
+              <Box sx={{ 
+                backgroundColor: 'rgba(255,255,255,0.03)',
+                p: 3,
+                borderRadius: '12px',
+                borderLeft: '4px solid #6d9eeb',
+                height: '100%'
+              }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <StorageIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.5rem' }} />
+                  <Typography variant="h6" sx={{ color: '#6d9eeb' }}>
+                    Universal Database Support
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>SQL:</strong> PostgreSQL, MySQL, SQLite, MS SQL Server
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>NoSQL:</strong> MongoDB, Firebase, CouchDB, DynamoDB
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff', mb: 1.5 }}>
+                  • <strong>Security:</strong> HMAC authentication, rate limiting, input validation
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                  • <strong>Performance:</strong> Redis caching, connection pooling
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+        
+        {/* Technology Stack */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+          {[
+            'GPT-4', 'Claude AI', 'CrewAI', 'FastAPI', 'Redis', 
+            'PostgreSQL', 'MongoDB', 'React', 'Python', 'Docker'
+          ].map((tech) => (
+            <Chip
+              key={tech}
+              label={tech}
+              size="small"
+              sx={{
+                bgcolor: 'rgba(78, 204, 163, 0.1)',
+                color: '#ffffff',
+                fontWeight: 500
+              }}
+            />
+          ))}
+        </Box>
+        
+        {/* Project Impact */}
+        <Box 
+          sx={{ 
+            p: 3, 
+            backgroundColor: 'rgba(78, 204, 163, 0.05)', 
+            borderRadius: '8px',
+            border: '1px solid rgba(78, 204, 163, 0.1)'
+          }}
+        >
+          <Typography variant="body1" sx={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.9)' }}>
+            This platform democratizes database access by allowing non-technical users to query complex databases using natural language, 
+            while maintaining enterprise-grade security and performance standards. The multi-agent architecture showcases advanced AI 
+            orchestration and demonstrates practical implementation of large language models in production environments.
+          </Typography>
+        </Box>
+      </Box>
+    </Paper>
+  </motion.div>
+</Grid>
 
       {/* Resume Section */}
           <Grid item xs={12}>
