@@ -400,7 +400,7 @@ const ExperiencePage: React.FC = () => {
                 fontWeight: 500
               }}
             >
-              Summer 2024 - January 2025
+              Summer 2024 - December 2024
             </Typography>
             
             <Typography 
