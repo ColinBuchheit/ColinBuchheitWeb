@@ -7,9 +7,7 @@ import {
   IconButton, 
   Button,
   Paper,
-  Chip,
-  useTheme,
-  useMediaQuery
+  Chip
 } from '@mui/material';
 import { 
   GitHub, 
@@ -49,9 +47,6 @@ const staggerContainer = {
 };
 
 const Home: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
   // Core Technology Stack - Aligned with defined specifications
   const technologies = [
     // Programming & Development
@@ -504,194 +499,204 @@ const Home: React.FC = () => {
           <Paper 
             elevation={0}
             sx={{ 
-              p: 4, 
               borderRadius: '16px',
+              overflow: 'hidden',
               background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
               boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
               border: '1px solid rgba(255,255,255,0.05)'
             }}
           >
-            <Typography 
-              variant="h4" 
-              gutterBottom 
-              color="primary"
+            {/* Header with gradient */}
+            <Box 
               sx={{ 
-                fontWeight: 600,
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                mb: 4,
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  width: '60px',
-                  height: '4px',
-                  bottom: '-8px',
-                  left: 0,
-                  backgroundColor: '#4ecca3',
-                  borderRadius: '2px'
-                }
+                p: 0.5, 
+                background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
               }}
-            >
-              <VerifiedUserIcon sx={{ mr: 2, fontSize: '2rem' }} />
-              Professional Certifications
-            </Typography>
+            />
             
-            <Grid container spacing={3}>
-              {/* Azure AI Engineer Associate */}
-              <Grid item xs={12} lg={4}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  <Box 
-                    component="a"
-                    href="https://learn.microsoft.com/api/credentials/share/en-us/ColinBuchheit-2794/DAC524C995B7F868?sharingId=1B033D14A58DDA25"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
+            <Box sx={{ p: 4 }}>
+              <Typography 
+                variant="h4" 
+                gutterBottom 
+                color="primary"
+                sx={{ 
+                  fontWeight: 600,
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  mb: 4,
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '60px',
+                    height: '4px',
+                    bottom: '-8px',
+                    left: 0,
+                    backgroundColor: '#4ecca3',
+                    borderRadius: '2px'
+                  }
+                }}
+              >
+                <VerifiedUserIcon sx={{ mr: 2, fontSize: '2rem' }} />
+                Professional Certifications
+              </Typography>
+              
+              <Grid container spacing={3}>
+                {/* Azure AI Engineer Associate */}
+                <Grid item xs={12} lg={4}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                  >
+                    <Box 
+                      component="a"
+                      href="https://learn.microsoft.com/api/credentials/share/en-us/ColinBuchheit-2794/DAC524C995B7F868?sharingId=1B033D14A58DDA25"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ 
+                        p: 3,
+                        backgroundColor: 'rgba(78, 204, 163, 0.1)',
+                        borderRadius: '12px',
+                        border: '2px solid rgba(78, 204, 163, 0.2)',
+                        position: 'relative',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                          backgroundColor: 'rgba(78, 204, 163, 0.15)',
+                          transform: 'translateY(-5px)',
+                          boxShadow: '0 10px 25px rgba(78, 204, 163, 0.2)'
+                        }
+                      }}
+                    >
+                      <Box sx={{
+                        position: 'absolute',
+                        top: -12,
+                        right: 16,
+                        backgroundColor: '#4ecca3',
+                        color: '#000',
+                        px: 2,
+                        py: 0.5,
+                        borderRadius: '12px',
+                        fontSize: '0.75rem',
+                        fontWeight: 600
+                      }}>
+                        CERTIFIED
+                      </Box>
+                      
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <Box
+                          component="img"
+                          src="/images/microsoft-certified-associate-badge.svg"
+                          alt="Microsoft Certified Associate Badge"
+                          sx={{
+                            width: '40px',
+                            height: '40px',
+                            mr: 1.5
+                          }}
+                          onError={(e: any) => {
+                            // Fallback to icon if SVG fails to load
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                        <MemoryIcon sx={{ color: '#4ecca3', fontSize: '1.8rem', display: 'none' }} id="fallback-icon" />
+                        <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                          Azure AI Engineer Associate
+                        </Typography>
+                        <OpenInNewIcon sx={{ color: '#4ecca3', ml: 'auto', fontSize: '1.2rem' }} />
+                      </Box>
+                      
+                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                        Microsoft Certified: AI-102
+                      </Typography>
+                      <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                        Issued: May 2025
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                        Validates skills in designing and implementing AI solutions using Azure Cognitive Services, Azure Machine Learning, 
+                        and Knowledge Mining. Covers computer vision, natural language processing, conversational AI, and responsible AI practices.
+                      </Typography>
+                    </Box>
+                  </motion.div>
+                </Grid>
+                
+                {/* Cybersecurity Certificate */}
+                <Grid item xs={12} lg={4}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <Box sx={{ 
+                      p: 3,
+                      backgroundColor: 'rgba(109, 158, 235, 0.1)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(109, 158, 235, 0.2)',
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <SecurityIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.8rem' }} />
+                        <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600 }}>
+                          Cybersecurity Certificate
+                        </Typography>
+                      </Box>
+                      
+                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                        University of Missouri
+                      </Typography>
+                      <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                        Issued: May 2025
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                        Completed a specialized certificate in cybersecurity covering network security, ethical hacking, digital forensics, and risk management. Developed skills in identifying vulnerabilities, securing systems, and implementing defensive strategies aligned with industry standards.
+                      </Typography>
+                    </Box>
+                  </motion.div>
+                </Grid>
+                
+                {/* Information Systems Certificate */}
+                <Grid item xs={12} lg={4}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <Box sx={{ 
                       p: 3,
                       backgroundColor: 'rgba(78, 204, 163, 0.1)',
                       borderRadius: '12px',
-                      border: '2px solid rgba(78, 204, 163, 0.2)',
-                      position: 'relative',
+                      border: '1px solid rgba(78, 204, 163, 0.2)',
                       height: '100%',
                       display: 'flex',
-                      flexDirection: 'column',
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        backgroundColor: 'rgba(78, 204, 163, 0.15)',
-                        transform: 'translateY(-5px)',
-                        boxShadow: '0 10px 25px rgba(78, 204, 163, 0.2)'
-                      }
-                    }}
-                  >
-                    <Box sx={{
-                      position: 'absolute',
-                      top: -12,
-                      right: 16,
-                      backgroundColor: '#4ecca3',
-                      color: '#000',
-                      px: 2,
-                      py: 0.5,
-                      borderRadius: '12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600
+                      flexDirection: 'column'
                     }}>
-                      CERTIFIED
-                    </Box>
-                    
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Box
-                        component="img"
-                        src="/images/microsoft-certified-associate-badge.svg"
-                        alt="Microsoft Certified Associate Badge"
-                        sx={{
-                          width: '40px',
-                          height: '40px',
-                          mr: 1.5
-                        }}
-                        onError={(e: any) => {
-                          // Fallback to icon if SVG fails to load
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                      <MemoryIcon sx={{ color: '#4ecca3', fontSize: '1.8rem', display: 'none' }} id="fallback-icon" />
-                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
-                        Azure AI Engineer Associate
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <ComputerIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.8rem' }} />
+                        <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
+                          Information Systems & Technology
+                        </Typography>
+                      </Box>
+                      
+                      <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
+                        University of Missouri
                       </Typography>
-                      <OpenInNewIcon sx={{ color: '#4ecca3', ml: 'auto', fontSize: '1.2rem' }} />
-                    </Box>
-                    
-                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
-                      Microsoft Certified: AI-102
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
-                      Issued: May 2025
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
-                      Validates skills in designing and implementing AI solutions using Azure Cognitive Services, Azure Machine Learning, 
-                      and Knowledge Mining. Covers computer vision, natural language processing, conversational AI, and responsible AI practices.
-                    </Typography>
-                  </Box>
-                </motion.div>
-              </Grid>
-              
-              {/* Cybersecurity Certificate */}
-              <Grid item xs={12} lg={4}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <Box sx={{ 
-                    p: 3,
-                    backgroundColor: 'rgba(109, 158, 235, 0.1)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(109, 158, 235, 0.2)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <SecurityIcon sx={{ color: '#6d9eeb', mr: 1.5, fontSize: '1.8rem' }} />
-                      <Typography variant="h6" sx={{ color: '#6d9eeb', fontWeight: 600 }}>
-                        Cybersecurity Certificate
+                      <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
+                        Issued: May 2025
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
+                        Completed a 12-credit program focused on programming, database systems, and web development. Gained hands-on experience with information systems architecture, front-end design, and data management tools, preparing for roles in IT and systems integration.
                       </Typography>
                     </Box>
-                    
-                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
-                      University of Missouri
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
-                      Issued: May 2025
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
-                      Completed a specialized certificate in cybersecurity covering network security, ethical hacking, digital forensics, and risk management. Developed skills in identifying vulnerabilities, securing systems, and implementing defensive strategies aligned with industry standards.
-                    </Typography>
-                  </Box>
-                </motion.div>
+                  </motion.div>
+                </Grid>
               </Grid>
-              
-              {/* Information Systems Certificate */}
-              <Grid item xs={12} lg={4}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <Box sx={{ 
-                    p: 3,
-                    backgroundColor: 'rgba(78, 204, 163, 0.1)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(78, 204, 163, 0.2)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <ComputerIcon sx={{ color: '#4ecca3', mr: 1.5, fontSize: '1.8rem' }} />
-                      <Typography variant="h6" sx={{ color: '#4ecca3', fontWeight: 600 }}>
-                        Information Systems & Technology
-                      </Typography>
-                    </Box>
-                    
-                    <Typography variant="body2" sx={{ color: '#ffffff', mb: 1, fontWeight: 500 }}>
-                      University of Missouri
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mb: 2 }}>
-                      Issued: May 2025
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)', flexGrow: 1 }}>
-                      Completed a 12-credit program focused on programming, database systems, and web development. Gained hands-on experience with information systems architecture, front-end design, and data management tools, preparing for roles in IT and systems integration.
-                    </Typography>
-                  </Box>
-                </motion.div>
-              </Grid>
-            </Grid>
+            </Box>
           </Paper>
         </motion.div>
         
@@ -704,151 +709,161 @@ const Home: React.FC = () => {
           <Paper 
             elevation={0}
             sx={{ 
-              p: 4, 
               borderRadius: '16px',
+              overflow: 'hidden',
               background: 'linear-gradient(145deg, #1e1e1e 0%, #262626 100%)',
               boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
               border: '1px solid rgba(255,255,255,0.05)'
             }}
           >
-            <Typography 
-              variant="h4" 
-              gutterBottom 
-              color="primary"
+            {/* Header with gradient */}
+            <Box 
               sx={{ 
-                fontWeight: 600,
-                position: 'relative',
-                mb: 4,
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  width: '60px',
-                  height: '4px',
-                  bottom: '-8px',
-                  left: 0,
-                  backgroundColor: '#6d9eeb',
-                  borderRadius: '2px'
-                }
+                p: 0.5, 
+                background: 'linear-gradient(90deg, #6d9eeb 0%, #4ecca3 100%)'
               }}
-            >
-              About Me
-            </Typography>
+            />
             
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={7}>
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    mb: 2,
-                    color: 'rgba(255,255,255,0.9)',
-                    lineHeight: 1.8
-                  }}
-                >
-                   Hello! I'm a recent graduate from the University of Missouri-Columbia with a B.S. in Information Technology, focusing on software development and artificial intelligence.
-                </Typography>
-                
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    mb: 2,
-                    color: 'rgba(255,255,255,0.9)',
-                    lineHeight: 1.8
-                  }}
-                >
-                  I have experience with Microsoft Azure AI services, including Cognitive Services, Azure OpenAI, and Language Studio. My work spans intent recognition, natural language processing, and building intelligent applications using Azure's AI and machine learning tools. This hands-on knowledge allows me to design and deploy scalable AI-powered solutions tailored to enterprise needs.
-                </Typography>
-                
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    color: 'rgba(255,255,255,0.9)',
-                    lineHeight: 1.8
-                  }}
-                >
-                  Graduating in just three years, I've developed a strong foundation in enterprise software, AI modeling, and IT systems. My diverse experience and specialized skills position me to thrive in today's evolving tech landscape.
-                </Typography>
-              </Grid>
+            <Box sx={{ p: 4 }}>
+              <Typography 
+                variant="h4" 
+                gutterBottom 
+                color="primary"
+                sx={{ 
+                  fontWeight: 600,
+                  position: 'relative',
+                  mb: 4,
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '60px',
+                    height: '4px',
+                    bottom: '-8px',
+                    left: 0,
+                    backgroundColor: '#6d9eeb',
+                    borderRadius: '2px'
+                  }
+                }}
+              >
+                About Me
+              </Typography>
               
-              <Grid item xs={12} md={5}>
-                <Box sx={{ pl: { xs: 0, md: 2 } }}>
-                  <motion.div 
-                    variants={staggerContainer}
-                    initial="hidden"
-                    animate="visible"
+              <Grid container spacing={4}>
+                <Grid item xs={12} md={7}>
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      mb: 2,
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 1.8
+                    }}
                   >
-                    {/* Education Quick Info */}
-                    <motion.div variants={fadeInUp}>
-                      <Box sx={{ 
-                        display: 'flex', 
-                        alignItems: 'flex-start', 
-                        mb: 3,
-                        p: 2,
-                        backgroundColor: 'rgba(255,255,255,0.03)',
-                        borderRadius: '8px'
-                      }}>
-                        <SchoolIcon sx={{ color: '#6d9eeb', mr: 2, fontSize: '2rem' }} />
-                        <Box>
-                          <Typography variant="h6" sx={{ mb: 0.5 }}>Education</Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            University of Missouri-Columbia<br />
-                            B.S. Information Technology - May 2025
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-                            Major GPA: 3.96 | Overall: 3.78<br />
-                            High Dean's List Every Semester
-                          </Typography>
+                     Hello! I'm a recent graduate from the University of Missouri-Columbia with a B.S. in Information Technology, focusing on software development and artificial intelligence.
+                  </Typography>
+                  
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      mb: 2,
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 1.8
+                    }}
+                  >
+                    I have experience with Microsoft Azure AI services, including Cognitive Services, Azure OpenAI, and Language Studio. My work spans intent recognition, natural language processing, and building intelligent applications using Azure's AI and machine learning tools. This hands-on knowledge allows me to design and deploy scalable AI-powered solutions tailored to enterprise needs.
+                  </Typography>
+                  
+                  <Typography 
+                    variant="body1" 
+                    sx={{ 
+                      color: 'rgba(255,255,255,0.9)',
+                      lineHeight: 1.8
+                    }}
+                  >
+                    Graduating in just three years, I've developed a strong foundation in enterprise software, AI modeling, and IT systems. My diverse experience and specialized skills position me to thrive in today's evolving tech landscape.
+                  </Typography>
+                </Grid>
+                
+                <Grid item xs={12} md={5}>
+                  <Box sx={{ pl: { xs: 0, md: 2 } }}>
+                    <motion.div 
+                      variants={staggerContainer}
+                      initial="hidden"
+                      animate="visible"
+                    >
+                      {/* Education Quick Info */}
+                      <motion.div variants={fadeInUp}>
+                        <Box sx={{ 
+                          display: 'flex', 
+                          alignItems: 'flex-start', 
+                          mb: 3,
+                          p: 2,
+                          backgroundColor: 'rgba(255,255,255,0.03)',
+                          borderRadius: '8px'
+                        }}>
+                          <SchoolIcon sx={{ color: '#6d9eeb', mr: 2, fontSize: '2rem' }} />
+                          <Box>
+                            <Typography variant="h6" sx={{ mb: 0.5 }}>Education</Typography>
+                            <Typography variant="body2" color="textSecondary">
+                              University of Missouri-Columbia<br />
+                              B.S. Information Technology - May 2025
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                              Major GPA: 3.96 | Overall: 3.78<br />
+                              High Dean's List Every Semester
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                    </motion.div>
-                    
-                    {/* Work Quick Info */}
-                    <motion.div variants={fadeInUp}>
-                      <Box sx={{ 
-                        display: 'flex', 
-                        alignItems: 'flex-start', 
-                        mb: 3,
-                        p: 2,
-                        backgroundColor: 'rgba(255,255,255,0.03)',
-                        borderRadius: '8px'
-                      }}>
-                        <WorkIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
-                        <Box>
-                          <Typography variant="h6" sx={{ mb: 0.5 }}>Experience</Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            MX Holdings<br />
-                            Enterprise Software Developer Intern
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-                            Summer 2024 - January 2025
-                          </Typography>
+                      </motion.div>
+                      
+                      {/* Work Quick Info */}
+                      <motion.div variants={fadeInUp}>
+                        <Box sx={{ 
+                          display: 'flex', 
+                          alignItems: 'flex-start', 
+                          mb: 3,
+                          p: 2,
+                          backgroundColor: 'rgba(255,255,255,0.03)',
+                          borderRadius: '8px'
+                        }}>
+                          <WorkIcon sx={{ color: '#4ecca3', mr: 2, fontSize: '2rem' }} />
+                          <Box>
+                            <Typography variant="h6" sx={{ mb: 0.5 }}>Experience</Typography>
+                            <Typography variant="body2" color="textSecondary">
+                              MX Holdings<br />
+                              Enterprise Software Developer Intern
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                              Summer 2024 - January 2025
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
-                    </motion.div>
-                    
-                    {/* Achievement Quick Info */}
-                    <motion.div variants={fadeInUp}>
-                      <Box sx={{ 
-                        display: 'flex', 
-                        alignItems: 'flex-start',
-                        p: 2,
-                        backgroundColor: 'rgba(255,255,255,0.03)',
-                        borderRadius: '8px'
-                      }}>
-                        <AutoAwesomeIcon sx={{ color: '#f0db4f', mr: 2, fontSize: '2rem' }} />
-                        <Box>
-                          <Typography variant="h6" sx={{ mb: 0.5 }}>Achievements</Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            Azure AI-102 Certified<br />
-                            Featured Mizzou IT Capstone<br />
-                            TigerHacks 2023 First Place Winner
-                          </Typography>
+                      </motion.div>
+                      
+                      {/* Achievement Quick Info */}
+                      <motion.div variants={fadeInUp}>
+                        <Box sx={{ 
+                          display: 'flex', 
+                          alignItems: 'flex-start',
+                          p: 2,
+                          backgroundColor: 'rgba(255,255,255,0.03)',
+                          borderRadius: '8px'
+                        }}>
+                          <AutoAwesomeIcon sx={{ color: '#f0db4f', mr: 2, fontSize: '2rem' }} />
+                          <Box>
+                            <Typography variant="h6" sx={{ mb: 0.5 }}>Achievements</Typography>
+                            <Typography variant="body2" color="textSecondary">
+                              Azure AI-102 Certified<br />
+                              Featured Mizzou IT Capstone<br />
+                              TigerHacks 2023 First Place Winner
+                            </Typography>
+                          </Box>
                         </Box>
-                      </Box>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                </Box>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Paper>
         </motion.div>
       </Container>

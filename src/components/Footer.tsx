@@ -5,8 +5,7 @@ import {
   Link, 
   Container, 
   Grid, 
-  IconButton,
-  Divider
+  IconButton
 } from '@mui/material';
 import { 
   GitHub, 

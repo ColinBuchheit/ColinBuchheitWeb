@@ -10,17 +10,12 @@ import {
   Chip,
   useTheme,
   useMediaQuery,
-  Button,
-  Collapse,
-  Alert,
-  Stack
+  Button
 } from '@mui/material';
 import { 
   WorkOutline as WorkIcon,
   Code as CodeIcon,
-  Domain as DomainIcon,
   Storage as StorageIcon,
-  DesignServices as DesignIcon,
   Timeline as TimelineIcon,
   Build as BuildIcon,
   Memory as MemoryIcon,
@@ -28,12 +23,11 @@ import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
   Security as SecurityIcon,
-  Warning as WarningIcon,
   OpenInNew as OpenInNewIcon,
   AutoAwesome as AutoAwesomeIcon  
 
 } from '@mui/icons-material';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // Animation variants
 const fadeIn = {
@@ -50,16 +44,6 @@ const slideInRight = {
     x: 0, 
     opacity: 1,
     transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
-
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
   }
 };
 
@@ -284,10 +268,8 @@ const SecureResumeSection: React.FC = () => {
     </Paper>
   );
 };
+
 const ExperiencePage: React.FC = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
   // Skill tags for easy reuse
   const skillChip = (label: string) => (
     <Chip 
@@ -1186,6 +1168,7 @@ const ExperiencePage: React.FC = () => {
               </Paper>
             </motion.div>
           </Grid>
+
 {/* MaiQuery Project - COMPLETE FINAL VERSION */}
 <Grid item xs={12}>
   <motion.div
